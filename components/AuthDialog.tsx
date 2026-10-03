@@ -16,7 +16,9 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
   const [busy, setBusy] = useState(false);
   const [resetSent, setResetSent] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);\n  const [donationCategories, setDonationCategories] = useState<DonationCategory[]>([]);\n  const [donationCategoryId, setDonationCategoryId] = useState<string>("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [donationCategories, setDonationCategories] = useState<DonationCategory[]>([]);
+  const [donationCategoryId, setDonationCategoryId] = useState<string>("");
 
   const closeAndReset = useCallback(() => {
     setMode("login");
