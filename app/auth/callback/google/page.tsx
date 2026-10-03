@@ -27,7 +27,7 @@ export default function GoogleCallbackPage() {
 
       if (window.opener && !window.opener.closed) {
         window.opener.postMessage(
-          { type: "bondhu-adorsho-google-auth", user: result.user },
+          { type: "futurehope-google-auth", user: result.user },
           window.location.origin,
         );
         setMessage("লগইন সফল হয়েছে। এই উইন্ডোটি বন্ধ হচ্ছে...");
@@ -43,7 +43,7 @@ export default function GoogleCallbackPage() {
       setMessage(text);
       if (window.opener && !window.opener.closed) {
         window.opener.postMessage(
-          { type: "bondhu-adorsho-google-auth-error", message: text },
+          { type: "futurehope-google-auth-error", message: text },
           window.location.origin,
         );
       }
