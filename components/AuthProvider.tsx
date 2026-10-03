@@ -7,6 +7,7 @@ import {
   clearStoredToken,
   getMe,
   getStoredToken,
+  storeToken,
   login as loginApi,
   logout as logoutApi,
   register as registerApi,
@@ -126,8 +127,9 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
           return;
         }
 
-        if (data.type === "bafoundation-google-auth" && data.user) {
+        if (data.type === "bafoundation-google-auth" && data.user && data.token) {
           try {
+            storeToken(data.token);
             await refresh();
             const freshUser = getStoredToken() ? await getMe() : data.user;
             setUser(freshUser);
