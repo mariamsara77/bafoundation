@@ -1,0 +1,7 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "donation-production-hardening-v2": false
+    }
+  }
+}
