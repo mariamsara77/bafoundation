@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
     'user_id', 'donation_category_id', 'tran_id', 'session_key', 'gateway',
-    'payment_method', 'amount', 'currency', 'status', 'donor_name',
+    'payment_method', 'amount', 'currency', 'status', 'risk_level', 'donor_name',
     'donor_email', 'donor_phone', 'message', 'validation_id', 'bank_tran_id',
     'card_type', 'card_brand', 'card_issuer', 'store_amount', 'paid_at',
     'failed_at', 'cancelled_at', 'gateway_payload',
