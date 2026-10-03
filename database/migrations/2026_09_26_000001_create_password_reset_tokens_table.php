@@ -8,6 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // The legacy users migration created this table before this dedicated
+        // migration was introduced. Keep the migration safe for existing
+        // installations while still creating it on fresh databases.
+        if (Schema::hasTable('password_reset_tokens')) {
+            return;
+        }
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
