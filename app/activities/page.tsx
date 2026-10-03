@@ -4,7 +4,7 @@ import { getWorks } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "কার্যক্রম",
-  description: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশনের প্রকাশিত কার্যক্রম ও উদ্যোগসমূহ।",
+  description: "বন্ধু আদর্শ ফাউন্ডেশনের প্রকাশিত কার্যক্রম ও উদ্যোগসমূহ।",
 };
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,7 @@ export default async function ActivitiesPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-3xl">
-        <p className="text-sm font-bold text-emerald-700">কার্যক্রম</p>
+        <p className="text-sm font-bold text-orange-700">কার্যক্রম</p>
         <h1 className="mt-2 text-4xl font-bold sm:text-5xl">আমাদের প্রকাশিত উদ্যোগ</h1>
         <p className="mt-5 text-lg leading-8 text-zinc-500">প্রশাসনিক প্যানেল থেকে প্রকাশিত কাজ ও উদ্যোগগুলো এখানে স্বয়ংক্রিয়ভাবে প্রদর্শিত হয়।</p>
       </div>
