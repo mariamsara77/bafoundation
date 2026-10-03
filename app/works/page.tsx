@@ -232,7 +232,7 @@ export default function WorksPage() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="max-w-3xl">
-        <p className="text-sm font-bold text-emerald-700">কাজের প্রস্তাব</p>
+        <p className="text-sm font-bold text-orange-700">কাজের প্রস্তাব</p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
           একটি ভালো কাজের প্রস্তাব দিন
         </h1>
@@ -255,7 +255,7 @@ export default function WorksPage() {
               </p>
             </div>
             {user && (
-              <span className="shrink-0 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+              <span className="shrink-0 rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700">
                 {isMember ? "সদস্য" : "লগইন"}
               </span>
             )}
@@ -270,7 +270,7 @@ export default function WorksPage() {
                     setForm((f) => ({ ...f, submitted_name: e.target.value }))
                   }
                   placeholder="আপনার নাম (ঐচ্ছিক)"
-                  className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white"
+                  className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white"
                 />
                 <input
                   value={form.submitted_email}
@@ -279,7 +279,7 @@ export default function WorksPage() {
                   }
                   type="email"
                   placeholder="ইমেইল (ঐচ্ছিক)"
-                  className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white"
+                  className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white"
                 />
               </>
             )}
@@ -291,7 +291,7 @@ export default function WorksPage() {
                 setForm((f) => ({ ...f, title: e.target.value }))
               }
               placeholder="কাজের নাম"
-              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white"
+              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white"
             />
 
             <select
@@ -299,7 +299,7 @@ export default function WorksPage() {
               onChange={(e) =>
                 setForm((f) => ({ ...f, category_id: e.target.value }))
               }
-              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white"
+              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white"
             >
               <option value="">ক্যাটাগরি নির্বাচন করুন</option>
               {categories.map((category) => (
@@ -317,7 +317,7 @@ export default function WorksPage() {
                 setForm((f) => ({ ...f, description: e.target.value }))
               }
               placeholder="কাজটি কী এবং কেন দরকার—সংক্ষেপে লিখুন"
-              className="w-full resize-y rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none transition focus:border-emerald-500 focus:bg-white"
+              className="w-full resize-y rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none transition focus:border-orange-500 focus:bg-white"
             />
 
             <label className="block rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-4 text-sm font-semibold text-zinc-600">
@@ -344,7 +344,7 @@ export default function WorksPage() {
             )}
 
             {message && (
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
+              <div className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-medium text-orange-700">
                 {message}
               </div>
             )}
@@ -359,7 +359,7 @@ export default function WorksPage() {
                 </p>
                 <Link
                   href={"/works/" + submittedWork.id}
-                  className="mt-3 inline-flex text-sm font-bold text-emerald-700 hover:underline"
+                  className="mt-3 inline-flex text-sm font-bold text-orange-700 hover:underline"
                 >
                   কাজের বিস্তারিত দেখুন →
                 </Link>
@@ -368,7 +368,7 @@ export default function WorksPage() {
 
             <button
               disabled={busy}
-              className="w-full rounded-2xl bg-emerald-600 px-5 py-3.5 font-bold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-2xl bg-orange-600 px-5 py-3.5 font-bold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {busy ? "জমা হচ্ছে..." : "প্রস্তাব জমা দিন"}
             </button>
@@ -378,7 +378,7 @@ export default function WorksPage() {
         <section>
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-bold text-emerald-700">কাজসমূহ</p>
+              <p className="text-sm font-bold text-orange-700">কাজসমূহ</p>
               <h2 className="mt-1 text-2xl font-bold">প্রকাশিত কাজ</h2>
             </div>
             <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-500">
@@ -409,7 +409,7 @@ export default function WorksPage() {
             <div className="mt-12">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-emerald-700">
+                  <p className="text-sm font-bold text-orange-700">
                     সদস্যদের ভোট
                   </p>
                   <h2 className="mt-1 text-2xl font-bold">ভোট চলছে</h2>
@@ -469,7 +469,7 @@ function WorkCard({
 
       <div className="p-6">
         <div className="flex items-center justify-between gap-3">
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+          <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700">
             {work.category || "সাধারণ"}
           </span>
           <span className="text-xs font-semibold text-zinc-400">
@@ -479,7 +479,7 @@ function WorkCard({
 
         <Link
           href={"/works/" + work.id}
-          className="mt-4 block text-xl font-bold hover:text-emerald-700"
+          className="mt-4 block text-xl font-bold hover:text-orange-700"
         >
           {work.title}
         </Link>
@@ -495,7 +495,7 @@ function WorkCard({
             </span>
             <Link
               href={"/works/" + work.id}
-              className="text-sm font-bold text-emerald-700 hover:underline"
+              className="text-sm font-bold text-orange-700 hover:underline"
             >
               বিস্তারিত →
             </Link>
@@ -503,13 +503,13 @@ function WorkCard({
 
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-zinc-100">
             <div
-              className="h-full rounded-full bg-emerald-500 transition-all"
+              className="h-full rounded-full bg-orange-500 transition-all"
               style={{ width: work.vote_progress + "%" }}
             />
           </div>
 
           {work.has_voted === true && (
-            <div className="mt-3 inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+            <div className="mt-3 inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700">
               আপনার ভোট দেওয়া আছে
             </div>
           )}
@@ -534,7 +534,7 @@ function WorkCard({
             type="button"
             disabled={voting}
             onClick={() => onVote(work.id, false)}
-            className="mt-4 w-full rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-4 w-full rounded-xl bg-orange-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {voting ? "ভোট হচ্ছে..." : user && isMember ? "এই কাজে ভোট দিন" : "সদস্য হিসেবে ভোট দিন"}
           </button>

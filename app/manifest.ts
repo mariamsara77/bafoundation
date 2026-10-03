@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশন",
-    short_name: "ফিউচার হোপ",
+    name: "বন্ধু আদর্শ ফাউন্ডেশন",
+    short_name: "বন্ধু আদর্শ ফাউন্ডেশন",
     description: "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।",
     id: "/",
     start_url: "/",
@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display_override: ["standalone"],
     orientation: "portrait-primary",
     background_color: "#ffffff",
-    theme_color: "#059669",
+    theme_color: "#FF4500",
     lang: "bn-BD",
     dir: "ltr",
     categories: ["social", "lifestyle", "education"],
@@ -36,14 +36,14 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "540x960",
         type: "image/svg+xml",
         form_factor: "narrow",
-        label: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশন — মোবাইল",
+        label: "বন্ধু আদর্শ ফাউন্ডেশন — মোবাইল",
       },
       {
         src: "/pwa-screenshot-wide.svg",
         sizes: "1280x720",
         type: "image/svg+xml",
         form_factor: "wide",
-        label: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশন — ওয়েব",
+        label: "বন্ধু আদর্শ ফাউন্ডেশন — ওয়েব",
       },
     ],
     share_target: {

@@ -10,12 +10,10 @@ type BeforeInstallPromptEvent = Event & {
 export default function PWARegister() {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstall, setShowInstall] = useState(false);
-  const [online, setOnline] = useState(true);
+  const [online, setOnline] = useState(() => typeof navigator === "undefined" ? true : navigator.onLine);
   const [updateReady, setUpdateReady] = useState(false);
 
   useEffect(() => {
-    setOnline(navigator.onLine);
-
     const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
     const onOnline = () => setOnline(true);
     const onOffline = () => setOnline(false);
@@ -93,7 +91,7 @@ export default function PWARegister() {
             <button
               type="button"
               onClick={install}
-              className="shrink-0 rounded-full bg-emerald-600 px-3 py-1.5 text-[11px] font-bold text-white transition hover:bg-emerald-700 active:scale-95"
+              className="shrink-0 rounded-full bg-orange-600 px-3 py-1.5 text-[11px] font-bold text-white transition hover:bg-orange-700 active:scale-95"
             >
               ইনস্টল
             </button>
@@ -111,12 +109,12 @@ export default function PWARegister() {
 
       {updateReady && (
         <div className="fixed inset-x-0 bottom-3 z-[66] flex justify-center px-3 md:hidden">
-          <div className="flex w-fit max-w-full items-center gap-2 rounded-full border border-emerald-200/80 bg-white/95 py-1.5 pl-3 pr-1.5 shadow-xl shadow-zinc-900/10 backdrop-blur-md">
+          <div className="flex w-fit max-w-full items-center gap-2 rounded-full border border-orange-200/80 bg-white/95 py-1.5 pl-3 pr-1.5 shadow-xl shadow-zinc-900/10 backdrop-blur-md">
             <p className="text-xs font-semibold text-zinc-800">নতুন সংস্করণ প্রস্তুত</p>
             <button
               type="button"
               onClick={update}
-              className="rounded-full bg-emerald-600 px-3 py-1.5 text-[11px] font-bold text-white transition hover:bg-emerald-700 active:scale-95"
+              className="rounded-full bg-orange-600 px-3 py-1.5 text-[11px] font-bold text-white transition hover:bg-orange-700 active:scale-95"
             >
               আপডেট
             </button>

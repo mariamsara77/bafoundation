@@ -153,7 +153,7 @@ export default function WorkDetailPage() {
 
         <div className="p-6 sm:p-10">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+            <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700">
               {work.category || "সাধারণ"}
             </span>
             <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-600">
@@ -184,7 +184,7 @@ export default function WorkDetailPage() {
               </div>
               <div className="text-right">
                 <p className="text-sm font-semibold text-zinc-500">অগ্রগতি</p>
-                <p className="mt-1 text-2xl font-bold text-emerald-700">
+                <p className="mt-1 text-2xl font-bold text-orange-700">
                   {work.vote_progress}%
                 </p>
               </div>
@@ -192,7 +192,7 @@ export default function WorkDetailPage() {
 
             <div className="mt-4 h-3 overflow-hidden rounded-full bg-zinc-200">
               <div
-                className="h-full rounded-full bg-emerald-500 transition-all"
+                className="h-full rounded-full bg-orange-500 transition-all"
                 style={{ width: work.vote_progress + "%" }}
               />
             </div>
@@ -208,7 +208,7 @@ export default function WorkDetailPage() {
           )}
 
           {message && (
-            <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+            <div className="mt-6 rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold text-orange-700">
               {message}
             </div>
           )}
@@ -239,7 +239,7 @@ export default function WorkDetailPage() {
                 type="button"
                 disabled={voting}
                 onClick={() => void vote(false)}
-                className="mt-7 w-full rounded-2xl bg-emerald-600 px-5 py-4 font-bold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:min-w-64"
+                className="mt-7 w-full rounded-2xl bg-orange-600 px-5 py-4 font-bold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:min-w-64"
               >
                 {voting ? "ভোট হচ্ছে..." : "এই কাজে ভোট দিন"}
               </button>

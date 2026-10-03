@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "https://futurehope.totthobox.com";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "https://bafoundation.totthobox.com";
 
 import { getStoredToken } from "@/lib/api";
 

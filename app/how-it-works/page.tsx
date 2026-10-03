@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "কীভাবে কাজ করে",
-  description: "Future Hope Foundation-এর account, Google login, profile, work proposal, member vote এবং approval workflow-এর সহজ নির্দেশনা।",
+  description: "বন্ধু আদর্শ ফাউন্ডেশন-এর account, Google login, profile, work proposal, member vote এবং approval workflow-এর সহজ নির্দেশনা।",
 };
 
 const steps = [
@@ -26,23 +26,23 @@ export default function HowItWorksPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8 sm:py-20">
       <header className="max-w-3xl">
-        <p className="text-sm font-bold text-emerald-700">সহজ গাইড</p>
-        <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Future Hope কীভাবে কাজ করে?</h1>
+        <p className="text-sm font-bold text-orange-700">সহজ গাইড</p>
+        <h1 className="mt-2 text-4xl font-bold sm:text-5xl">বন্ধু আদর্শ ফাউন্ডেশন কীভাবে কাজ করে?</h1>
         <p className="mt-4 text-lg leading-8 text-zinc-500">Account থেকে profile, proposal থেকে member vote—এক নজরে পুরো process বুঝে নিন।</p>
       </header>
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         {steps.map(([number, title, description]) => (
           <article key={number} className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-zinc-200">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-sm font-bold text-emerald-700">{number}</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-50 text-sm font-bold text-orange-700">{number}</span>
             <h2 className="mt-5 text-2xl font-bold">{title}</h2>
             <p className="mt-3 leading-7 text-zinc-500">{description}</p>
           </article>
         ))}
       </section>
 
-      <section className="mt-12 rounded-3xl border border-emerald-100 bg-emerald-50 p-7 sm:p-9">
-        <p className="text-sm font-bold text-emerald-800">পুরো flow</p>
+      <section className="mt-12 rounded-3xl border border-orange-100 bg-orange-50 p-7 sm:p-9">
+        <p className="text-sm font-bold text-orange-800">পুরো flow</p>
         <p className="mt-3 text-lg font-bold leading-8 text-zinc-900">Registration / Google Login → Profile → Admin Approval → Work Proposal → Member Vote → 10 Valid Votes → Public Approval</p>
       </section>
 
@@ -51,7 +51,7 @@ export default function HowItWorksPage() {
         <div className="mt-5 grid gap-3 sm:grid-cols-4">
           {["Profile update", "Admin review", "Designation + Priority", "Approved member"].map((item, index) => (
             <div key={item} className="rounded-2xl bg-white/5 p-4">
-              <span className="text-sm font-bold text-emerald-300">০{index + 1}</span>
+              <span className="text-sm font-bold text-orange-300">০{index + 1}</span>
               <p className="mt-2 font-semibold">{item}</p>
             </div>
           ))}
@@ -71,7 +71,7 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="mt-10 flex flex-wrap gap-3">
-        <Link href="/works" className="rounded-xl bg-emerald-600 px-5 py-3 font-bold text-white hover:bg-emerald-700">কাজের প্রস্তাব দিন</Link>
+        <Link href="/works" className="rounded-xl bg-orange-600 px-5 py-3 font-bold text-white hover:bg-orange-700">কাজের প্রস্তাব দিন</Link>
         <Link href="/profile" className="rounded-xl border border-zinc-200 bg-white px-5 py-3 font-bold text-zinc-700 hover:bg-zinc-50">আমার Profile</Link>
       </section>
     </main>

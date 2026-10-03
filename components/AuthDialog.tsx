@@ -106,15 +106,15 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
       />
       <div className="relative z-10 max-h-[92vh] w-full max-w-md overflow-y-auto rounded-3xl border border-zinc-200 bg-white p-6 shadow-2xl sm:p-8">
         <div className="mb-6">
-          <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-xl text-white">↗</div>
+          <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-600 text-xl text-white">↗</div>
           <h2 id="auth-title" className="text-2xl font-bold text-zinc-950">
             {mode === "login" ? "লগইন করুন" : mode === "register" ? "অ্যাকাউন্ট তৈরি করুন" : "পাসওয়ার্ড রিসেট করুন"}
           </h2>
           <p className="mt-1 text-sm text-zinc-500">
             {mode === "login"
-              ? "আপনার Future Hope অ্যাকাউন্টে প্রবেশ করুন।"
+              ? "আপনার বন্ধু আদর্শ ফাউন্ডেশন অ্যাকাউন্টে প্রবেশ করুন।"
               : mode === "register"
-                ? "কয়েকটি তথ্য দিয়ে আপনার Future Hope অ্যাকাউন্ট তৈরি করুন।"
+                ? "কয়েকটি তথ্য দিয়ে আপনার বন্ধু আদর্শ ফাউন্ডেশন অ্যাকাউন্ট তৈরি করুন।"
                 : "আপনার অ্যাকাউন্টের ইমেইল দিন। আমরা পাসওয়ার্ড রিসেট করার লিংক পাঠাব।"}
           </p>
         </div>
@@ -136,7 +136,7 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
 
         <form onSubmit={submit} className="space-y-4">
           {mode === "forgot" && resetSent && (
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
+            <div className="rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-medium text-orange-700">
               যদি এই ইমেইল দিয়ে একটি অ্যাকাউন্ট থাকে, তাহলে পাসওয়ার্ড রিসেট করার লিংক আপনার ইমেইলে পাঠানো হয়েছে।
             </div>
           )}
@@ -144,20 +144,20 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
           {mode === "register" && (
             <label className="block">
               <span className="mb-1.5 block text-sm font-semibold text-zinc-700">নাম</span>
-              <input value={name} onChange={(e) => setName(e.target.value)} type="text" autoComplete="name" required maxLength={100} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="আপনার নাম" />
+              <input value={name} onChange={(e) => setName(e.target.value)} type="text" autoComplete="name" required maxLength={100} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="আপনার নাম" />
             </label>
           )}
 
           <label className="block">
             <span className="mb-1.5 block text-sm font-semibold text-zinc-700">ইমেইল</span>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" autoComplete="email" required className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="আপনার ইমেইল" />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" autoComplete="email" required className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="আপনার ইমেইল" />
           </label>
 
           {mode !== "forgot" && (
             <label className="block">
               <span className="mb-1.5 block text-sm font-semibold text-zinc-700">পাসওয়ার্ড</span>
               <div className="relative">
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type={showPassword ? "text" : "password"} autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={mode === "register" ? 8 : undefined} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 pr-12 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder={mode === "login" ? "আপনার পাসওয়ার্ড" : "কমপক্ষে ৮ অক্ষর"} />
+                <input value={password} onChange={(e) => setPassword(e.target.value)} type={showPassword ? "text" : "password"} autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={mode === "register" ? 8 : undefined} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 pr-12 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder={mode === "login" ? "আপনার পাসওয়ার্ড" : "কমপক্ষে ৮ অক্ষর"} />
                 <button type="button" onClick={() => setShowPassword((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-zinc-500 transition hover:text-zinc-800" aria-label={showPassword ? "পাসওয়ার্ড লুকান" : "পাসওয়ার্ড দেখান"} title={showPassword ? "পাসওয়ার্ড লুকান" : "পাসওয়ার্ড দেখান"}>
                   {showPassword ? (
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true">
@@ -181,7 +181,7 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
             <label className="block">
               <span className="mb-1.5 block text-sm font-semibold text-zinc-700">পাসওয়ার্ড নিশ্চিত করুন</span>
               <div className="relative">
-                <input value={confirmation} onChange={(e) => setConfirmation(e.target.value)} type={showConfirmation ? "text" : "password"} autoComplete="new-password" required minLength={8} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 pr-12 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="পাসওয়ার্ড আবার লিখুন" />
+                <input value={confirmation} onChange={(e) => setConfirmation(e.target.value)} type={showConfirmation ? "text" : "password"} autoComplete="new-password" required minLength={8} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 pr-12 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="পাসওয়ার্ড আবার লিখুন" />
                 <button type="button" onClick={() => setShowConfirmation((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-zinc-500 transition hover:text-zinc-800" aria-label={showConfirmation ? "নিশ্চিত পাসওয়ার্ড লুকান" : "নিশ্চিত পাসওয়ার্ড দেখান"} title={showConfirmation ? "নিশ্চিত পাসওয়ার্ড লুকান" : "নিশ্চিত পাসওয়ার্ড দেখান"}>
                   {showConfirmation ? (
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true">
@@ -202,21 +202,21 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
           )}
 
           {mode === "login" && (
-            <button type="button" disabled={busy} onClick={() => { setMode("forgot"); setError(""); setResetSent(false); }} className="text-sm font-semibold text-emerald-700 hover:text-emerald-800 disabled:opacity-60">
+            <button type="button" disabled={busy} onClick={() => { setMode("forgot"); setError(""); setResetSent(false); }} className="text-sm font-semibold text-orange-700 hover:text-orange-800 disabled:opacity-60">
               পাসওয়ার্ড ভুলে গেছেন?
             </button>
           )}
 
           {error && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{error}</div>}
 
-          <button disabled={busy} className="w-full rounded-xl bg-emerald-600 px-4 py-3.5 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60">
+          <button disabled={busy} className="w-full rounded-xl bg-orange-600 px-4 py-3.5 font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60">
             {busy
               ? mode === "login" ? "লগইন হচ্ছে..." : mode === "forgot" ? "লিংক পাঠানো হচ্ছে..." : "অ্যাকাউন্ট তৈরি হচ্ছে..."
               : mode === "login" ? "লগইন" : mode === "forgot" ? "রিসেট লিংক পাঠান" : "রেজিস্টার"}
           </button>
         </form>
 
-        <button type="button" disabled={busy} onClick={() => { setMode(mode === "forgot" ? "login" : mode === "login" ? "register" : "login"); setError(""); setResetSent(false); }} className="mt-5 w-full text-sm font-semibold text-emerald-700 hover:text-emerald-800 disabled:opacity-60">
+        <button type="button" disabled={busy} onClick={() => { setMode(mode === "forgot" ? "login" : mode === "login" ? "register" : "login"); setError(""); setResetSent(false); }} className="mt-5 w-full text-sm font-semibold text-orange-700 hover:text-orange-800 disabled:opacity-60">
           {mode === "forgot" ? "লগইনে ফিরে যান" : mode === "login" ? "নতুন অ্যাকাউন্ট তৈরি করুন" : "আগের অ্যাকাউন্টে লগইন করুন"}
         </button>
         <button type="button" onClick={() => !busy && closeAndReset()} className="mt-3 w-full text-sm font-medium text-zinc-500 hover:text-zinc-900">বন্ধ করুন</button>

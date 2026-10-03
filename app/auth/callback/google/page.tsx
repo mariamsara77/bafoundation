@@ -57,7 +57,7 @@ export default function GoogleCallbackPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-zinc-50 px-4">
       <div className="w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-8 text-center shadow-xl">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-2xl">✓</div>
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">✓</div>
         <h1 className="mt-5 text-2xl font-bold text-zinc-950">Google লগইন</h1>
         <p className="mt-3 text-sm leading-7 text-zinc-500">{message}</p>
       </div>

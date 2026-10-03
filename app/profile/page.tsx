@@ -28,18 +28,13 @@ export default function ProfilePage() {
   const [form, setForm] = useState(initial);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Data fetching is a legitimate external synchronization; state updates happen from the async request lifecycle.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
-    if (!user) {
-      setLoading(false);
-      return;
-    }
+    if (!user) return;
     getProfile()
       .then((p) => {
         setProfile(p);
@@ -129,7 +124,7 @@ export default function ProfilePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="rounded-3xl bg-zinc-950 p-7 text-white sm:p-10">
-        <p className="text-sm font-semibold text-emerald-300">সদস্য profile</p>
+        <p className="text-sm font-semibold text-orange-300">সদস্য profile</p>
         <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
           আপনার তথ্য ও পরিচিতি
         </h1>
@@ -141,7 +136,7 @@ export default function ProfilePage() {
       <form onSubmit={submit} className="mt-7 space-y-7">
         <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-zinc-200 sm:p-8">
           <div className="flex flex-col gap-7 sm:flex-row sm:items-center">
-            <div className="flex h-28 w-28 shrink-0 overflow-hidden rounded-full bg-emerald-50 ring-4 ring-emerald-50">
+            <div className="flex h-28 w-28 shrink-0 overflow-hidden rounded-full bg-orange-50 ring-4 ring-orange-50">
               {preview ? (
                 <img
                   src={preview}
@@ -149,7 +144,7 @@ export default function ProfilePage() {
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="m-auto text-3xl font-bold text-emerald-700">
+                <div className="m-auto text-3xl font-bold text-orange-700">
                   {(user.name || user.email).charAt(0).toUpperCase()}
                 </div>
               )}
@@ -160,7 +155,7 @@ export default function ProfilePage() {
                 JPG, PNG বা WebP • সর্বোচ্চ ২ MB
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <label className="cursor-pointer rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700">
+                <label className="cursor-pointer rounded-xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-700">
                   ছবি নির্বাচন
                   <input
                     type="file"
@@ -225,7 +220,7 @@ export default function ProfilePage() {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, blood_group: e.target.value }))
                 }
-                className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-emerald-500"
+                className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-orange-500"
               >
                 <option value="">নির্বাচন করুন</option>
                 {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map((x) => (
@@ -270,14 +265,14 @@ export default function ProfilePage() {
           </div>
         )}
         {message && (
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 font-medium text-emerald-700">
+          <div className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 font-medium text-orange-700">
             {message}
           </div>
         )}
         <div className="flex justify-end">
           <button
             disabled={saving}
-            className="rounded-2xl bg-emerald-600 px-7 py-3.5 font-bold text-white hover:bg-emerald-700 disabled:opacity-60"
+            className="rounded-2xl bg-orange-600 px-7 py-3.5 font-bold text-white hover:bg-orange-700 disabled:opacity-60"
           >
             {saving ? "সংরক্ষণ হচ্ছে..." : "Profile সংরক্ষণ করুন"}
           </button>
@@ -313,7 +308,7 @@ function Field({
       <input
         value={value}
         onChange={(e) => onChange((f) => ({ ...f, [name]: e.target.value }))}
-        className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-emerald-500 focus:bg-white"
+        className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-orange-500 focus:bg-white"
       />
     </label>
   );
@@ -338,7 +333,7 @@ function Textarea({
         rows={rows}
         value={value}
         onChange={(e) => onChange((f) => ({ ...f, [name]: e.target.value }))}
-        className="w-full resize-y rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none focus:border-emerald-500 focus:bg-white"
+        className="w-full resize-y rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none focus:border-orange-500 focus:bg-white"
       />
     </label>
   );
