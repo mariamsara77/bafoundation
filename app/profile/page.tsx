@@ -300,6 +300,59 @@ export default function ProfilePage() {
             {saving ? "সংরক্ষণ হচ্ছে..." : "Profile সংরক্ষণ করুন"}
           </button>
         </div>
+
+        <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-zinc-200 sm:p-8">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-sm font-bold text-orange-700">অনুদান</p>
+              <h2 className="mt-1 text-2xl font-bold">আপনার অনুদানের ইতিহাস</h2>
+            </div>
+            <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-500">
+              {donations.length}টি
+            </span>
+          </div>
+
+          <div className="mt-5 space-y-3">
+            {donations.length === 0 ? (
+              <div className="rounded-2xl border border-dashed border-zinc-300 p-6 text-center text-sm leading-6 text-zinc-500">
+                এখনো কোনো অনুদানের রেকর্ড পাওয়া যায়নি।
+              </div>
+            ) : (
+              donations.map((donation) => (
+                <article key={donation.id} className="rounded-2xl bg-zinc-50 p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-bold text-zinc-900">
+                        {donation.category?.name || "অনুদান"}
+                      </p>
+                      <p className="mt-1 text-xs text-zinc-500">
+                        ট্রানজেকশন: {donation.tran_id}
+                      </p>
+                    </div>
+                    <p className="text-lg font-bold text-orange-700">
+                      {donation.currency} {Number(donation.amount).toLocaleString("en-US")}
+                    </p>
+                  </div>
+                  <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-semibold">
+                    <span className="rounded-full bg-white px-3 py-1 text-zinc-600">
+                      {donationStatusLabel(donation.status)}
+                    </span>
+                    {donation.payment_method && (
+                      <span className="rounded-full bg-white px-3 py-1 text-zinc-600">
+                        {donation.payment_method}
+                      </span>
+                    )}
+                    {donation.paid_at && (
+                      <time dateTime={donation.paid_at} className="text-zinc-400">
+                        {new Date(donation.paid_at).toLocaleString("bn-BD")}
+                      </time>
+                    )}
+                  </div>
+                </article>
+              ))
+            )}
+          </div>
+        </section>
       </form>
     </main>
   );
