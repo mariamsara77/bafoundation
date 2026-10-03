@@ -7,7 +7,9 @@ import {
   getProfile,
   getDonationCategories,
   updateProfile,
-  type Profile,\n  type Donation,\n  type DonationCategory,
+  type Profile,
+  type Donation,
+  type DonationCategory,
 } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
 
@@ -33,11 +35,14 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");\n  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);\n  const [donations, setDonations] = useState<import("@/lib/api").Donation[]>([]);
+  const [error, setError] = useState("");
+  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);
+  const [donations, setDonations] = useState<import("@/lib/api").Donation[]>([]);
 
   useEffect(() => {
     if (!user) return;
-    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));\n    getMyDonations().then(setDonations).catch(() => setDonations([]));
+    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));
+    getMyDonations().then(setDonations).catch(() => setDonations([]));
     getProfile()
       .then((p) => {
         setProfile(p);
