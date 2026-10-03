@@ -13,7 +13,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
       <section className="w-full rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-zinc-200 sm:p-10">
         <h1 className="text-2xl font-bold text-zinc-950">এই অংশটি এখন লোড করা যাচ্ছে না</h1>
         <p className="mt-3 leading-7 text-zinc-500">সাময়িক সমস্যার কারণে কিছু তথ্য পাওয়া যাচ্ছে না। প্রয়োজন হলে আবার চেষ্টা করুন।</p>
-        <button type="button" onClick={() => reset()} className="mt-6 rounded-xl bg-emerald-600 px-5 py-3 font-semibold text-white transition hover:bg-emerald-700">
+        <button type="button" onClick={() => reset()} className="mt-6 rounded-xl bg-orange-600 px-5 py-3 font-semibold text-white transition hover:bg-orange-700">
           আবার চেষ্টা করুন
         </button>
       </section>
