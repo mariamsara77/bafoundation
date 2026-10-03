@@ -3,7 +3,7 @@
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Profile;
-use App\Models\Designation;
+use App\Models\Designation;\nuse App\Models\DonationCategory;
 use Flux\Flux;
 use Illuminate\Support\Str;
 
@@ -15,7 +15,7 @@ new class extends Component {
     public $status = '';
     public $viewingProfile = null;
     public $designation_id = null;
-    public $priority = 999;
+    public $priority = 999;\n    public $donation_category_id = null;
 
     public function updatingSearch()
     {
@@ -24,7 +24,7 @@ new class extends Component {
 
     public function viewProfile($id)
     {
-        $this->viewingProfile = Profile::with(['user.roles', 'designation'])->findOrFail($id);
+        $this->viewingProfile = Profile::with(['user.roles', 'designation', 'donationCategory'])->findOrFail($id);
         Flux::modal('view-biodata-modal')->show();
     }
 
@@ -34,7 +34,7 @@ new class extends Component {
         $this->selectedProfileId = $profile->id;
         $this->status = $profile->status ?? 'pending';
         $this->designation_id = $profile->designation_id;
-        $this->priority = $profile->priority ?? 999;
+        $this->priority = $profile->priority ?? 999;\n        $this->donation_category_id = $profile->donation_category_id;
         
         Flux::modal('edit-biodata-modal')->show();
     }
@@ -44,7 +44,7 @@ new class extends Component {
         $this->validate([
             'status' => 'required|in:active,inactive,pending,rejected',
             'designation_id' => 'nullable|exists:designations,id',
-            'priority' => 'required|integer|min:1|max:9999',
+            'priority' => 'required|integer|min:1|max:9999',\n            'donation_category_id' => 'nullable|exists:donation_categories,id',
         ]);
 
         $profile = Profile::findOrFail($this->selectedProfileId);
@@ -52,13 +52,13 @@ new class extends Component {
         // স্পষ্টভাবে স্ট্যাটাস ফিল্ড আপডেট ও সেভ করা
         $profile->status = $this->status;
         $profile->designation_id = $this->designation_id ?: null;
-        $profile->priority = (int) $this->priority;
+        $profile->priority = (int) $this->priority;\n        $profile->donation_category_id = $this->donation_category_id ?: null;
         $profile->save();
 
         Flux::modal('edit-biodata-modal')->close();
         Flux::toast('Biodata status updated successfully!', variant: 'success');
         
-        $this->reset(['selectedProfileId', 'status', 'designation_id', 'priority']);
+        $this->reset(['selectedProfileId', 'status', 'designation_id', 'priority', 'donation_category_id']);
     }
 
     public function deleteProfile($id)
@@ -72,8 +72,8 @@ new class extends Component {
     public function with(): array
     {
         return [
-            'designations' => Designation::where('is_active', true)->orderBy('order')->get(),
-            'profiles' => Profile::with(['user.roles', 'designation'])
+            'designations' => Designation::where('is_active', true)->orderBy('order')->get(),\n            'donationCategories' => DonationCategory::where('is_active', true)->orderBy('sort_order')->orderBy('name')->get(),
+            'profiles' => Profile::with(['user.roles', 'designation', 'donationCategory'])
                 ->when($this->search, function ($query) {
                     $query->whereHas('user', function ($q) {
                         $q->where('name', 'like', '%' . $this->search . '%')
@@ -107,7 +107,7 @@ new class extends Component {
                 <flux:table.column>Member</flux:table.column>
                 <flux:table.column>Phone & Blood</flux:table.column>
                 <flux:table.column>Designation</flux:table.column>
-                <flux:table.column>Education</flux:table.column>
+                <flux:table.column>Donation Category</flux:table.column>\n                <flux:table.column>Education</flux:table.column>
                 <flux:table.column>Status</flux:table.column>
                 <flux:table.column align="end">Actions</flux:table.column>
             </flux:table.columns>
@@ -167,7 +167,7 @@ new class extends Component {
                 </flux:table.row>
                 @empty
                 <flux:table.row>
-                    <flux:table.cell colspan="6" class="text-center py-6 text-zinc-500">
+                    <flux:table.cell colspan="7" class="text-center py-6 text-zinc-500">
                         No biodata found.
                     </flux:table.cell>
                 </flux:table.row>
@@ -201,7 +201,7 @@ new class extends Component {
                 <div class="text-sm">Blood Group: <span
                         class="font-semibold text-rose-500">{{ $viewingProfile->blood_group ?? 'N/A' }}</span></div>
                 <div class="text-sm">Designation: <span
-                        class="font-medium">{{ $viewingProfile->designation?->name ?? 'N/A' }}</span></div>
+                        class="font-medium">{{ $viewingProfile->designation?->name ?? 'N/A' }}</span></div>\n                <div class="text-sm">Donation Category: <span class="font-medium">{{ $viewingProfile->donationCategory?->name ?? 'N/A' }}</span></div>
             </div>
         </div>
 
@@ -269,7 +269,7 @@ new class extends Component {
                 @endforeach
             </flux:select>
 
-            <flux:input wire:model="priority" type="number" min="1" label="Public Display Priority" />
+            <flux:input wire:model="priority" type="number" min="1" label="Public Display Priority" />\n\n            <flux:select wire:model="donation_category_id" label="Donation Category">\n                <flux:select.option value="">No preference</flux:select.option>\n                @foreach ($donationCategories as $category)\n                    <flux:select.option value="{{ $category->id }}">{{ $category->name }}</flux:select.option>\n                @endforeach\n            </flux:select>
 
             <div class="flex justify-end gap-2 pt-2">
                 <flux:modal.close>
