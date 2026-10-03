@@ -1,23 +1,20 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ApiError, resetPassword } from "@/lib/api";
 
 export default function ResetPasswordPage() {
-  const [token, setToken] = useState("");
-  const [email, setEmail] = useState("");
+  const params = useSearchParams();
+  const token = params.get("token") || "";
+  const [email, setEmail] = useState(params.get("email") || "");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [busy, setBusy] = useState(false);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setToken(params.get("token") || "");
-    setEmail(params.get("email") || "");
-  }, []);
 
   async function submit(event: FormEvent) {
     event.preventDefault();
