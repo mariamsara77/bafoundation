@@ -78,6 +78,7 @@ new class extends Component {
             <flux:select.option value="">সব স্ট্যাটাস</flux:select.option>
             <flux:select.option value="completed">সম্পন্ন</flux:select.option>
             <flux:select.option value="processing">প্রক্রিয়াধীন</flux:select.option>
+            <flux:select.option value="review">পর্যালোচনা প্রয়োজন</flux:select.option>
             <flux:select.option value="pending">অপেক্ষমাণ</flux:select.option>
             <flux:select.option value="failed">ব্যর্থ</flux:select.option>
             <flux:select.option value="cancelled">বাতিল</flux:select.option>
@@ -114,7 +115,7 @@ new class extends Component {
                             <div class="text-xs text-zinc-500">{{ $donation->tran_id }}</div>
                         </flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge color="{{ $donation->status === 'completed' ? 'green' : ($donation->status === 'failed' ? 'red' : 'yellow') }}">
+                            <flux:badge color="{{ $donation->status === 'completed' ? 'green' : ($donation->status === 'failed' ? 'red' : ($donation->status === 'review' ? 'orange' : 'yellow')) }}">
                                 {{ $donation->status }}
                             </flux:badge>
                         </flux:table.cell>
