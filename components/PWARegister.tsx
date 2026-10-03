@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -9,6 +9,7 @@ type BeforeInstallPromptEvent = Event & {
 
 export default function PWARegister() {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
+  const installEventRef = useRef<BeforeInstallPromptEvent | null>(null);
   const [showInstall, setShowInstall] = useState(false);
   const [offline, setOffline] = useState(false);
   const [updateReady, setUpdateReady] = useState(false);
@@ -49,22 +50,29 @@ export default function PWARegister() {
     const onBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
       const promptEvent = event as BeforeInstallPromptEvent;
+      installEventRef.current = promptEvent;
       setInstallEvent(promptEvent);
       setShowInstall(isMobile());
     };
 
     const onAppInstalled = () => {
+      installEventRef.current = null;
       setInstallEvent(null);
       setShowInstall(false);
       window.dispatchEvent(new CustomEvent("bafoundation:pwa-installed"));
     };
 
     const onInstallRequest = async () => {
-      if (!installEvent) {
+      const promptEvent = installEventRef.current;
+      if (!promptEvent) {
         window.dispatchEvent(new CustomEvent("bafoundation:pwa-guide"));
         return;
       }
-      await install();
+      await promptEvent.prompt();
+      await promptEvent.userChoice;
+      installEventRef.current = null;
+      setInstallEvent(null);
+      setShowInstall(false);
     };
 
     void verifyConnectivity();
