@@ -9,7 +9,7 @@ export default function OfflinePage() {
         </div>
         <h1 className="text-2xl font-bold text-zinc-950 sm:text-3xl">আপনি বর্তমানে অফলাইনে আছেন</h1>
         <p className="mt-3 text-sm leading-7 text-zinc-600 sm:text-base">
-          ইন্টারনেট সংযোগ ফিরে এলে পেজটি রিফ্রেশ করুন। আগে থেকে খোলা বন্ধু আদর্শ-এর কিছু
+          ইন্টারনেট সংযোগ ফিরে এলে পেজটি রিফ্রেশ করুন। আগে থেকে খোলা বন্ধু আদর্শ ফাউন্ডেশন-এর কিছু
           কনটেন্ট অফলাইনেও ব্যবহার করা যেতে পারে।
         </p>
         <button
