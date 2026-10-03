@@ -40,7 +40,7 @@ export type Profile = {
   status?: string;
   priority?: number;
   designation?: string | null;
-  designation_id?: number | string | null;
+  designation_id?: number | string | null;\n  donation_category_id?: number | string | null;\n  donation_category?: string | null;
   created_at?: string;
   updated_at?: string;
 };
