@@ -15,7 +15,7 @@ export default async function MembersPage() {
       <div className="max-w-3xl">
         <p className="text-sm font-bold text-orange-700">সদস্যবৃন্দ</p>
         <h1 className="mt-2 text-4xl font-bold sm:text-5xl">আমাদের সদস্য ও দায়িত্বশীলরা</h1>
-        <p className="mt-5 leading-8 text-zinc-500">Backend-এ সক্রিয় ও অনুমোদিত সদস্যদের তথ্য অনুযায়ী এই তালিকা স্বয়ংক্রিয়ভাবে তৈরি হয়।</p>
+        <p className="mt-5 leading-8 text-zinc-500">অনুমোদিত সদস্যদের তথ্য অনুযায়ী এই তালিকা স্বয়ংক্রিয়ভাবে তৈরি হয়।</p>
       </div>
 
       {members.length > 0 ? (
@@ -42,7 +42,7 @@ export default async function MembersPage() {
       ) : (
         <div className="mt-12 rounded-3xl border border-zinc-200 bg-white px-6 py-16 text-center shadow-sm">
           <h2 className="text-2xl font-bold">এখনও কোনো অনুমোদিত সদস্য নেই</h2>
-          <p className="mt-3 leading-7 text-zinc-500">Backend-এ সদস্যের profile অনুমোদিত হলে এখানে স্বয়ংক্রিয়ভাবে দেখা যাবে।</p>
+          <p className="mt-3 leading-7 text-zinc-500">সদস্যের প্রোফাইল অনুমোদিত হলে এখানে স্বয়ংক্রিয়ভাবে দেখা যাবে।</p>
         </div>
       )}
     </div>
