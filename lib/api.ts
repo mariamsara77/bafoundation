@@ -144,7 +144,7 @@ export function clearStoredToken() {
   if (typeof window !== "undefined") window.localStorage.removeItem(TOKEN_KEY);
 }
 
-function storeToken(token: string) {
+export function storeToken(token: string) {
   if (typeof window !== "undefined") window.localStorage.setItem(TOKEN_KEY, token);
 }
 
