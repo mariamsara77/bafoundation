@@ -35,33 +35,33 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block text-sm font-semibold text-zinc-700">নাম *</span>
-          <input required maxLength={100} value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="আপনার নাম" />
+          <input required maxLength={100} value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="আপনার নাম" />
         </label>
         <label className="block">
           <span className="mb-1.5 block text-sm font-semibold text-zinc-700">ইমেইল *</span>
-          <input required type="email" maxLength={255} value={form.email} onChange={(e) => update("email", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="name@example.com" />
+          <input required type="email" maxLength={255} value={form.email} onChange={(e) => update("email", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="name@example.com" />
         </label>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block text-sm font-semibold text-zinc-700">ফোন</span>
-          <input maxLength={30} value={form.phone} onChange={(e) => update("phone", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="০১XXXXXXXXX" />
+          <input maxLength={30} value={form.phone} onChange={(e) => update("phone", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="০১XXXXXXXXX" />
         </label>
         <label className="block">
           <span className="mb-1.5 block text-sm font-semibold text-zinc-700">বিষয় *</span>
-          <input required maxLength={200} value={form.subject} onChange={(e) => update("subject", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="কী বিষয়ে যোগাযোগ করছেন?" />
+          <input required maxLength={200} value={form.subject} onChange={(e) => update("subject", e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="কী বিষয়ে যোগাযোগ করছেন?" />
         </label>
       </div>
       <label className="block">
         <span className="mb-1.5 block text-sm font-semibold text-zinc-700">বার্তা *</span>
-        <textarea required minLength={10} maxLength={5000} rows={compact ? 5 : 7} value={form.message} onChange={(e) => update("message", e.target.value)} className="w-full resize-y rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" placeholder="আপনার বার্তা লিখুন..." />
+        <textarea required minLength={10} maxLength={5000} rows={compact ? 5 : 7} value={form.message} onChange={(e) => update("message", e.target.value)} className="w-full resize-y rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-7 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="আপনার বার্তা লিখুন..." />
       </label>
       {feedback && (
-        <div role="alert" className={feedback.type === "success" ? "rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800" : "rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"}>
+        <div role="alert" className={feedback.type === "success" ? "rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-medium text-orange-800" : "rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"}>
           {feedback.text}
         </div>
       )}
-      <button type="submit" disabled={busy} className="w-full rounded-xl bg-emerald-600 px-5 py-3.5 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
+      <button type="submit" disabled={busy} className="w-full rounded-xl bg-orange-600 px-5 py-3.5 font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
         {busy ? "বার্তা পাঠানো হচ্ছে..." : "বার্তা পাঠান"}
       </button>
     </form>
