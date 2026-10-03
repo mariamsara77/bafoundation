@@ -56,6 +56,15 @@ export default function PWARegister() {
     const onAppInstalled = () => {
       setInstallEvent(null);
       setShowInstall(false);
+      window.dispatchEvent(new CustomEvent("bafoundation:pwa-installed"));
+    };
+
+    const onInstallRequest = async () => {
+      if (!installEvent) {
+        window.dispatchEvent(new CustomEvent("bafoundation:pwa-guide"));
+        return;
+      }
+      await install();
     };
 
     void verifyConnectivity();
@@ -65,6 +74,7 @@ export default function PWARegister() {
     document.addEventListener("visibilitychange", onVisibilityChange);
     window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
     window.addEventListener("appinstalled", onAppInstalled);
+    window.addEventListener("bafoundation:pwa-install-request", onInstallRequest as EventListener);
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js", { scope: "/" }).then((registration) => {
@@ -87,6 +97,7 @@ export default function PWARegister() {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
       window.removeEventListener("appinstalled", onAppInstalled);
+      window.removeEventListener("bafoundation:pwa-install-request", onInstallRequest as EventListener);
     };
   }, []);
 
