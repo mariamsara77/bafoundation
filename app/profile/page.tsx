@@ -31,7 +31,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState("");\n  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);
 
   useEffect(() => {
     if (!user) return;
@@ -211,6 +211,19 @@ export default function ProfilePage() {
               value={form.mother_name}
               onChange={setForm}
             />
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold">অনুদানের পছন্দের বিভাগ</span>
+              <select
+                value={form.donation_category_id}
+                onChange={(e) => setForm((f) => ({ ...f, donation_category_id: e.target.value }))}
+                className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-orange-500 focus:bg-white"
+              >
+                <option value="">নির্বাচন করুন</option>
+                {donationCategories.map((category) => (
+                  <option key={category.id} value={category.id}>{category.name}</option>
+                ))}
+              </select>
+            </label>
             <label className="block">
               <span className="mb-2 block text-sm font-semibold">
                 রক্তের গ্রুপ
