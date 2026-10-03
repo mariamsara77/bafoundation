@@ -22,7 +22,7 @@ class GoogleAuthController extends Controller
     {
         $state = Str::random(96);
 
-        session()->put('futurehope_google_oauth_state', [
+        session()->put('bafoundation_google_oauth_state', [
             'value' => $state,
             'expires_at' => now()->addMinutes(self::STATE_TTL_MINUTES)->timestamp,
         ]);
@@ -47,7 +47,7 @@ class GoogleAuthController extends Controller
         $frontend = rtrim((string) config('services.frontend_url'), '/');
         $failureUrl = $frontend . '/auth/callback/google#error=google_login_failed';
 
-        $sessionState = session()->pull('futurehope_google_oauth_state');
+        $sessionState = session()->pull('bafoundation_google_oauth_state');
         $incomingState = (string) $request->string('state');
 
         if (
@@ -244,6 +244,6 @@ class GoogleAuthController extends Controller
 
     private function codeKey(string $code): string
     {
-        return 'futurehope:google:code:' . hash('sha256', $code);
+        return 'bafoundation:google:code:' . hash('sha256', $code);
     }
 }

@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function show(Request $request): JsonResponse
     {
-        $user = $request->user()->loadMissing('profile.designation');
+        $user = $request->user()->loadMissing('profile.designation', 'profile.donationCategory');
 
         return response()->json([
             'profile' => $this->formatProfile($user->profile, $user),
@@ -32,6 +32,11 @@ class ProfileController extends Controller
             'permanent_address' => ['nullable', 'string', 'max:500'],
             'education' => ['nullable', 'string', 'max:150'],
             'blood_group' => ['nullable', Rule::in(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])],
+            'donation_category_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('donation_categories', 'id')->where('is_active', true),
+            ],
             'bio' => ['nullable', 'string', 'max:1000'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ]);
@@ -47,30 +52,24 @@ class ProfileController extends Controller
             ['user_id' => $user->id],
             [
                 ...$profileData,
-                // Do not remove voting access from an already-approved member
-                // merely because they edited their profile details.
                 'status' => $existingStatus === 'active' ? 'active' : 'pending',
             ]
         );
 
         if ($request->hasFile('image')) {
             try {
-                // Avatar is owned by User, not Profile.
-                // singleFile() replaces the previous local image only after
-                // the new media item is accepted.
                 $user->addMediaFromRequest('image')->toMediaCollection('avatar');
-                // Keep the Google avatar URL as fallback for a later delete.
             } catch (\Throwable $e) {
                 report($e);
 
                 return response()->json([
                     'message' => 'Profile saved, but image upload failed.',
-                    'profile' => $this->formatProfile($profile->fresh('designation'), $user->fresh()),
+                    'profile' => $this->formatProfile($profile->fresh('designation', 'donationCategory'), $user->fresh()),
                 ], 422);
             }
         }
 
-        $user->refresh()->load('profile.designation');
+        $user->refresh()->load('profile.designation', 'profile.donationCategory');
 
         return response()->json([
             'message' => 'Profile submitted for admin approval.',
@@ -89,7 +88,7 @@ class ProfileController extends Controller
         }
 
         $user->clearMediaCollection('avatar');
-        $user->refresh()->load('profile.designation');
+        $user->refresh()->load('profile.designation', 'profile.donationCategory');
 
         return response()->json([
             'message' => 'Profile image removed. Google avatar থাকলে সেটি fallback হিসেবে থাকবে।',
@@ -116,6 +115,8 @@ class ProfileController extends Controller
             'priority' => $profile?->priority ?? 999,
             'designation' => $profile?->designation?->name,
             'designation_id' => $profile?->designation_id,
+            'donation_category_id' => $profile?->donation_category_id,
+            'donation_category' => $profile?->donationCategory?->name,
             'avatar_url' => $user->avatar_url,
             'has_uploaded_avatar' => $user->hasMedia('avatar'),
             'created_at' => $profile?->created_at,
