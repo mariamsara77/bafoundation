@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ApiError, getDonationPaymentStatus, type Donation } from "@/lib/api";
+import { getDonationPaymentStatus, type Donation } from "@/lib/api";
 
 export default function DonationSuccessPage() {
   const params = useSearchParams();
