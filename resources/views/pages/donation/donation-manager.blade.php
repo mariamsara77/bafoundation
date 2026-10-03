@@ -115,7 +115,7 @@ new class extends Component {
                             <div class="text-xs text-zinc-500">{{ $donation->tran_id }}</div>
                         </flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge color="{{ $donation->status === 'completed' ? 'green' : ($donation->status === 'failed' ? 'red' : ($donation->status === 'review' ? 'orange' : 'yellow')) }}">
+                            <flux:badge color="{{ $donation->status === 'completed' ? 'green' : ($donation->status === 'failed' ? 'red' : ($donation->status === 'review' ? 'yellow' : 'yellow')) }}">
                                 {{ $donation->status }}
                             </flux:badge>
                         </flux:table.cell>
