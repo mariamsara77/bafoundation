@@ -33,13 +33,8 @@ export default function ProfilePage() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Data fetching is a legitimate external synchronization; state updates happen from the async request lifecycle.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
-    if (!user) {
-      setLoading(false);
-      return;
-    }
+    if (!user) return;
     getProfile()
       .then((p) => {
         setProfile(p);
