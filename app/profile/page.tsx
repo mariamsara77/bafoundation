@@ -5,6 +5,7 @@ import {
   ApiError,
   deleteAvatar,
   getProfile,
+  getDonationCategories,
   updateProfile,
   type Profile,
 } from "@/lib/api";
@@ -20,6 +21,7 @@ const initial = {
   education: "",
   blood_group: "",
   bio: "",
+  donation_category_id: "",
 };
 
 export default function ProfilePage() {
@@ -35,6 +37,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!user) return;
+    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));
     getProfile()
       .then((p) => {
         setProfile(p);
@@ -48,6 +51,7 @@ export default function ProfilePage() {
           education: p.education || "",
           blood_group: p.blood_group || "",
           bio: p.bio || "",
+          donation_category_id: p.donation_category_id ? String(p.donation_category_id) : "",
         });
         setPreview(p.avatar_url || user.avatar || "");
       })
