@@ -2,11 +2,11 @@
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { ApiError, register as registerApi, sendPasswordResetLink } from "@/lib/api";
+import { ApiError, sendPasswordResetLink } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
 
 export default function AuthDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { login, googleLogin } = useAuth();
+  const { login, register, googleLogin } = useAuth();
   const [mode, setMode] = useState<"login" | "register" | "forgot">("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +66,7 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
     setBusy(true);
     try {
       if (mode === "register") {
-        const result = await registerApi(name.trim(), email.trim(), password, confirmation);
+        const result = await register(name.trim(), email.trim(), password, confirmation);
         if (!result.user) throw new ApiError("রেজিস্ট্রেশন সফল হলেও user data পাওয়া যায়নি।");
       } else {
         await login(email.trim(), password);
