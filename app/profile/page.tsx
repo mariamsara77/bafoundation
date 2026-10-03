@@ -33,11 +33,11 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");\n  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);
+  const [error, setError] = useState("");\n  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);\n  const [donations, setDonations] = useState<import("@/lib/api").Donation[]>([]);
 
   useEffect(() => {
     if (!user) return;
-    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));
+    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));\n    getMyDonations().then(setDonations).catch(() => setDonations([]));
     getProfile()
       .then((p) => {
         setProfile(p);
@@ -354,4 +354,16 @@ function Textarea({
       />
     </label>
   );
+}
+
+function donationStatusLabel(status: string) {
+  const labels: Record<string, string> = {
+    completed: "সম্পন্ন",
+    processing: "প্রক্রিয়াধীন",
+    pending: "অপেক্ষমাণ",
+    review: "পর্যালোচনায়",
+    failed: "ব্যর্থ",
+    cancelled: "বাতিল",
+  };
+  return labels[status] || status;
 }
