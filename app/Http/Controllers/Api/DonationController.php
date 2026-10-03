@@ -89,6 +89,24 @@ class DonationController extends Controller
         ]);
     }
 
+    public function publicStatus(string $tranId): JsonResponse
+    {
+        $donation = Donation::with('category')->where('tran_id', $tranId)->firstOrFail();
+
+        return response()->json([
+            'donation' => [
+                'tran_id' => $donation->tran_id,
+                'category' => $donation->category?->name,
+                'amount' => (string) $donation->amount,
+                'currency' => $donation->currency,
+                'status' => $donation->status,
+                'payment_method' => $donation->payment_method,
+                'paid_at' => $donation->paid_at,
+                'created_at' => $donation->created_at,
+            ],
+        ]);
+    }
+
     public function status(Request $request, string $tranId): JsonResponse
     {
         $donation = Donation::with('category')->where('tran_id', $tranId)->firstOrFail();
