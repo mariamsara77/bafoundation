@@ -44,17 +44,23 @@ class FoundationSeeder extends Seeder
 
         $adminEmail = strtolower(trim((string) env('FOUNDATION_ADMIN_EMAIL', 'shaangi.com@gmail.com')));
         $adminName = trim((string) env('FOUNDATION_ADMIN_NAME', 'System Admin'));
-        $adminPassword = (string) env('FOUNDATION_ADMIN_PASSWORD', 'password');
+        $adminPassword = (string) env('FOUNDATION_ADMIN_PASSWORD', '');
 
-        $admin = User::firstOrCreate(
-            ['email' => $adminEmail],
-            [
+        $admin = User::where('email', $adminEmail)->first();
+
+        if (!$admin) {
+            if (blank($adminPassword)) {
+                throw new \RuntimeException('FOUNDATION_ADMIN_PASSWORD must be configured before creating the initial admin user.');
+            }
+
+            $admin = User::create([
                 'name' => $adminName,
+                'email' => $adminEmail,
                 'password' => Hash::make($adminPassword),
                 'status' => 'active',
                 'email_verified_at' => now(),
-            ]
-        );
+            ]);
+        }
 
         $admin->forceFill([
             'name' => $admin->name ?: $adminName,
