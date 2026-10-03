@@ -14,13 +14,16 @@ export default function VisitorTracker() {
 
     const onPopState = () => startNavigation();
     const onOnline = () => getTracker().flushOfflineQueue();
+    const onPwaInstalled = () => getTracker().syncPwaStatus(true);
 
     window.addEventListener("popstate", onPopState);
     window.addEventListener("online", onOnline);
+    window.addEventListener("bafoundation:pwa-installed", onPwaInstalled);
 
     return () => {
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("online", onOnline);
+      window.removeEventListener("bafoundation:pwa-installed", onPwaInstalled);
     };
   }, []);
 
