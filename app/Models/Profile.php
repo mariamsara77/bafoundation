@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
-    'user_id', 'designation_id', 'priority', 'phone', 'father_name', 'mother_name',
-    'present_address', 'permanent_address', 'education', 'blood_group',
-    'bio', 'status'
+    'user_id', 'designation_id', 'donation_category_id', 'priority', 'phone', 'father_name', 'mother_name',
+    'present_address', 'permanent_address', 'education', 'blood_group', 'bio', 'status'
 ])]
 class Profile extends Model
-{    
+{
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -21,5 +20,10 @@ class Profile extends Model
     public function designation(): BelongsTo
     {
         return $this->belongsTo(Designation::class);
+    }
+
+    public function donationCategory(): BelongsTo
+    {
+        return $this->belongsTo(DonationCategory::class);
     }
 }
