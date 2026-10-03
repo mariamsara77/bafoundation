@@ -128,15 +128,17 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
         }
 
         if (data.type === "bafoundation-google-auth" && data.user && data.token) {
+          const googleUser = data.user;
+          const googleToken = data.token;
+
           try {
-            storeToken(data.token);
-            await refresh();
-            const freshUser = getStoredToken() ? await getMe() : data.user;
+            storeToken(googleToken);
+            const freshUser = await getMe();
             setUser(freshUser);
             finish(() => resolve(freshUser));
           } catch {
-            setUser(data.user);
-            finish(() => resolve(data.user));
+            setUser(googleUser);
+            finish(() => resolve(googleUser));
           }
         }
       };
