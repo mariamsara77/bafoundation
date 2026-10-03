@@ -3,14 +3,14 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "যোগাযোগ",
-  description: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশনের সঙ্গে যোগাযোগ, সহযোগিতা ও বার্তা পাঠানোর তথ্য।",
+  description: "বন্ধু আদর্শ ফাউন্ডেশনের সঙ্গে যোগাযোগ, সহযোগিতা ও বার্তা পাঠানোর তথ্য।",
 };
 
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-3xl">
-        <p className="text-sm font-bold text-emerald-700">যোগাযোগ</p>
+        <p className="text-sm font-bold text-orange-700">যোগাযোগ</p>
         <h1 className="mt-2 text-4xl font-bold sm:text-5xl">আমাদের সঙ্গে কথা বলুন</h1>
         <p className="mt-5 text-lg leading-8 text-zinc-500">সংগঠনের কার্যক্রম, সহযোগিতা, স্বেচ্ছাসেবী অংশগ্রহণ বা অন্যান্য বিষয়ে আমাদের বার্তা পাঠাতে নিচের ফর্মটি ব্যবহার করুন।</p>
       </div>
@@ -29,7 +29,7 @@ export default function ContactPage() {
           </div>
           <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-zinc-200">
             <h2 className="text-xl font-bold">সরাসরি যোগাযোগ</h2>
-            <a href="tel:01340792677" className="mt-5 block rounded-xl bg-emerald-50 px-4 py-3 font-semibold text-emerald-700 hover:bg-emerald-100">০১৩৪০-৭৯২৬৭৭</a>
+            <a href="tel:01340792677" className="mt-5 block rounded-xl bg-orange-50 px-4 py-3 font-semibold text-orange-700 hover:bg-orange-100">০১৩৪০-৭৯২৬৭৭</a>
             <p className="mt-4 text-sm leading-6 text-zinc-500">ফোনে যোগাযোগের সময় আপনার বিষয়টি সংক্ষেপে জানালে আমাদের জন্য সহায়ক হবে।</p>
           </div>
         </div>
