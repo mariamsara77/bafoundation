@@ -27,7 +27,7 @@ export default function HowItWorksPage() {
     <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8 sm:py-20">
       <header className="max-w-3xl">
         <p className="text-sm font-bold text-orange-700">সহজ গাইড</p>
-        <h1 className="mt-2 text-4xl font-bold sm:text-5xl">বন্ধু আদর্শ কীভাবে কাজ করে?</h1>
+        <h1 className="mt-2 text-4xl font-bold sm:text-5xl">বন্ধু আদর্শ ফাউন্ডেশন কীভাবে কাজ করে?</h1>
         <p className="mt-4 text-lg leading-8 text-zinc-500">Account থেকে profile, proposal থেকে member vote—এক নজরে পুরো process বুঝে নিন।</p>
       </header>
 
