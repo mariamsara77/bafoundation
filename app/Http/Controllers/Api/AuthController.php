@@ -20,7 +20,7 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'donation_category_id' => ['nullable', 'integer', 'exists:donation_categories,id'],
+            'donation_category_id' => ['required', 'integer', 'exists:donation_categories,id'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ], [
             'email.unique' => 'এই ইমেইল দিয়ে আগে থেকেই একটি অ্যাকাউন্ট আছে। লগইন করুন অথবা Google দিয়ে প্রবেশ করুন।',
