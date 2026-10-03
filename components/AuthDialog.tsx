@@ -2,7 +2,7 @@
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { ApiError, getDonationCategories, register as registerApi, sendPasswordResetLink, type DonationCategory } from "@/lib/api";
+import { ApiError, register as registerApi, sendPasswordResetLink } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
 
 export default function AuthDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -17,8 +17,6 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
   const [resetSent, setResetSent] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [donationCategories, setDonationCategories] = useState<DonationCategory[]>([]);
-  const [donationCategoryId, setDonationCategoryId] = useState<string>("");
 
   const closeAndReset = useCallback(() => {
     setMode("login");
@@ -68,7 +66,7 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
     setBusy(true);
     try {
       if (mode === "register") {
-        const result = await registerApi(name.trim(), email.trim(), password, confirmation, donationCategoryId ? Number(donationCategoryId) : null);
+        const result = await registerApi(name.trim(), email.trim(), password, confirmation);
         if (!result.user) throw new ApiError("রেজিস্ট্রেশন সফল হলেও user data পাওয়া যায়নি।");
       } else {
         await login(email.trim(), password);
@@ -147,18 +145,6 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
             <label className="block">
               <span className="mb-1.5 block text-sm font-semibold text-zinc-700">নাম</span>
               <input value={name} onChange={(e) => setName(e.target.value)} type="text" autoComplete="name" required maxLength={100} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10" placeholder="আপনার নাম" />
-            </label>
-          )}
-
-          {mode === "register" && (
-            <label className="block">
-              <span className="mb-1.5 block text-sm font-semibold text-zinc-700">আপনি কোন ধরনের অনুদানে যুক্ত হতে চান?</span>
-              <select required value={donationCategoryId} onChange={(e) => setDonationCategoryId(e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10">
-                <option value="">বিভাগ নির্বাচন করুন</option>
-                {donationCategories.map((category) => (
-                  <option key={category.id} value={category.id}>{category.name}</option>
-                ))}
-              </select>
             </label>
           )}
 
