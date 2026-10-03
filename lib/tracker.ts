@@ -243,8 +243,11 @@ class VisitorTracker {
         credentials: "include",
         headers,
         body: JSON.stringify({ activities }),
+      }).then((response) => {
+        if (response.ok) {
+          this.storage("tracking_queue", JSON.stringify([]));
+        }
       }).catch(() => undefined);
-      this.storage("tracking_queue", JSON.stringify([]));
     } catch {}
   }
 
@@ -270,6 +273,10 @@ class VisitorTracker {
       });
     }, { passive: true });
     window.addEventListener("online", () => this.flushOfflineQueue());
+
+    if (this.detectPwa()) {
+      this.syncPwaStatus(true);
+    }
   }
 }
 
