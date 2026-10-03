@@ -14,18 +14,18 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://futurehope.totthobox.com"),
+  metadataBase: new URL("https://bondhu-adorsho.totthobox.com"),
   title: {
-    default: "ফিউচার হোপ অ্যান্ড হিউম্যানিটি ফাউন্ডেশন",
-    template: "%s | ফিউচার হোপ",
+    default: "বন্ধু আদর্শ ফাউন্ডেশন",
+    template: "%s | বন্ধু আদর্শ",
   },
   description:
     "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।",
   robots: { index: true, follow: true },
-  applicationName: "ফিউচার হোপ",
+  applicationName: "বন্ধু আদর্শ",
   appleWebApp: {
     capable: true,
-    title: "ফিউচার হোপ",
+    title: "বন্ধু আদর্শ",
     statusBarStyle: "default",
   },
   icons: {
