@@ -53,7 +53,7 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl bg-zinc-50 p-5"><div className="text-xs text-zinc-500">ভোট</div><div className="mt-2 text-xl font-bold">{work.votes_count}/{work.required_votes}</div></div>
             <div className="rounded-2xl bg-zinc-50 p-5"><div className="text-xs text-zinc-500">অগ্রগতি</div><div className="mt-2 text-xl font-bold">{work.vote_progress}%</div></div>
-            <div className="rounded-2xl bg-zinc-50 p-5"><div className="text-xs text-zinc-500">প্রস্তাবদাতা</div><div className="mt-2 font-semibold">{work.user?.name || work.submitted_name || "বন্ধু আদর্শ"}</div></div>
+            <div className="rounded-2xl bg-zinc-50 p-5"><div className="text-xs text-zinc-500">প্রস্তাবদাতা</div><div className="mt-2 font-semibold">{work.user?.name || work.submitted_name || "বন্ধু আদর্শ ফাউন্ডেশন"}</div></div>
           </div>
           {work.updates && work.updates.length > 0 && (
             <section className="mt-10 border-t border-zinc-200 pt-8">
