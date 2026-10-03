@@ -1,11 +1,13 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { ApiError, getDonationCategories, startDonation, type DonationCategory } from "@/lib/api";
+import { ApiError, getDonationCategories, getProfile, startDonation, type DonationCategory } from "@/lib/api";
+import { useAuth } from "@/components/AuthProvider";
 
 const quickAmounts = [500, 1000, 2000, 5000];
 
 export default function DonatePage() {
+  const { user } = useAuth();
   const [categories, setCategories] = useState<DonationCategory[]>([]);
   const [categoryId, setCategoryId] = useState("");
   const [amount, setAmount] = useState("1000");
