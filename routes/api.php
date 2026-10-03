@@ -32,6 +32,7 @@ Route::match(['get', 'post'], '/donations/payment/success', [DonationController:
 Route::match(['get', 'post'], '/donations/payment/fail', [DonationController::class, 'fail'])->middleware('throttle:30,1');
 Route::match(['get', 'post'], '/donations/payment/cancel', [DonationController::class, 'cancel'])->middleware('throttle:30,1');
 Route::post('/donations/payment/ipn', [DonationController::class, 'ipn'])->middleware('throttle:120,1');
+Route::get('/donations/payment/status/{tranId}', [DonationController::class, 'publicStatus'])->middleware('throttle:60,1');
 Route::get('/donations/{tranId}', [DonationController::class, 'status'])->middleware(['auth:sanctum', 'throttle:60,1']);
 
 Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:5,10');
