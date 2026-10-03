@@ -1,6 +1,6 @@
 export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://bafoundation.totthobox.com").replace(/\/$/, "");
 
-const TOKEN_KEY = "futurehope_access_token";
+const TOKEN_KEY = "bafoundation_access_token";
 
 type ApiResponse<T = unknown> = {
   data?: T;
