@@ -24,7 +24,7 @@ export default function WorkGallery({
 
   if (!items.length) {
     return (
-      <div className="flex h-72 items-center justify-center bg-emerald-50 text-sm font-semibold text-emerald-700 sm:h-96">
+      <div className="flex h-72 items-center justify-center bg-orange-50 text-sm font-semibold text-orange-700 sm:h-96">
         {title}
       </div>
     );
@@ -85,7 +85,7 @@ export default function WorkGallery({
               key={item.id}
               type="button"
               onClick={() => setIndex(itemIndex)}
-              className={"relative h-16 w-24 shrink-0 overflow-hidden rounded-xl ring-2 transition " + (itemIndex === index ? "ring-emerald-500" : "ring-transparent")}
+              className={"relative h-16 w-24 shrink-0 overflow-hidden rounded-xl ring-2 transition " + (itemIndex === index ? "ring-orange-500" : "ring-transparent")}
             >
               <Image
                 src={item.thumb_url || item.url}
