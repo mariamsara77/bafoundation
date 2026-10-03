@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -32,9 +33,9 @@ function ShareContent() {
           <button type="button" onClick={copy} className="rounded-full bg-orange-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-orange-700">
             কপি করুন
           </button>
-          <a href="/" className="rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-bold text-zinc-700 hover:bg-zinc-50">
+          <Link href="/" className="rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-bold text-zinc-700 hover:bg-zinc-50">
             হোমে যান
-          </a>
+          </Link>
         </div>
       </section>
     </main>
