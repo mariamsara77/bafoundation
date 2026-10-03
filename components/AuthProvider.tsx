@@ -52,6 +52,13 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     refresh().finally(() => setLoading(false));
+
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === "bafoundation_access_token") void refresh();
+    };
+
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, [refresh]);
 
   const login = useCallback(async (email: string, password: string) => {
@@ -62,9 +69,13 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
 
     setUser(result.user);
-    // Re-read the authenticated account so the profile menu always reflects
-    // the current backend state immediately after login.
-    await refresh();
+    // A successful login should not be turned into a failed login just because
+    // the follow-up /auth/me request is temporarily unavailable.
+    try {
+      await refresh();
+    } catch {
+      // Keep the authenticated user returned by the login endpoint.
+    }
     return result.user;
   }, [refresh]);
 
@@ -81,9 +92,13 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
 
     setUser(result.user);
-    // Registration creates the member profile; refresh ensures the navbar/profile
-    // menu uses the same canonical user state returned by /auth/me.
-    await refresh();
+    // Registration creates the member profile; refresh when available without
+    // making a successful registration fail during a temporary API outage.
+    try {
+      await refresh();
+    } catch {
+      // Keep the authenticated user returned by the registration endpoint.
+    }
     return result.user;
   }, [refresh]);
 
