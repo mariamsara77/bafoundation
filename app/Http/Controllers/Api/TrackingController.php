@@ -95,6 +95,13 @@ class TrackingController extends Controller
      */
     public function trackEvent(Request $request): JsonResponse
     {
+        $validated = $request->validate([
+            'category' => ['nullable', 'string', 'max:50'],
+            'action' => ['nullable', 'string', 'max:100'],
+            'label' => ['nullable', 'string', 'max:255'],
+            'payload' => ['nullable', 'array'],
+        ]);
+
         try {
             $ip = $this->resolveClientIp($request);
             $authenticatedUserId = $this->authenticatedUserId($request);
@@ -112,10 +119,10 @@ class TrackingController extends Controller
                 return response()->json(['status' => 'ignored'], 200);
             }
 
-            $category = $request->input('category', 'interaction');
-            $action   = $request->input('action', 'click');
-            $payload  = $request->input('payload', []);
-            $label    = $payload['label'] ?? $request->input('label');
+            $category = $validated['category'] ?? 'interaction';
+            $action   = $validated['action'] ?? 'click';
+            $payload  = $validated['payload'] ?? [];
+            $label    = $payload['label'] ?? ($validated['label'] ?? null);
 
             if ($authenticatedUserId !== null) {
                 $visitor->forceFill([
