@@ -7,7 +7,7 @@ import {
   getProfile,
   getDonationCategories,
   updateProfile,
-  type Profile,
+  type Profile,\n  type Donation,\n  type DonationCategory,
 } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
 
