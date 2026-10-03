@@ -28,7 +28,7 @@ export default function ProfilePage() {
   const [form, setForm] = useState(initial);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
