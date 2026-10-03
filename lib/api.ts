@@ -433,10 +433,10 @@ export async function resetPassword(token: string, email: string, password: stri
   });
 }
 
-export async function register(name: string, email: string, password: string, passwordConfirmation: string, donationCategoryId?: number | null) {
+export async function register(name: string, email: string, password: string, passwordConfirmation: string) {
   const payload = await request<ApiResponse>("/auth/register", {
     method: "POST",
-    body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation, donation_category_id: donationCategoryId || null }),
+    body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation }),
   });
   const token = payload.access_token || payload.token ||
     (payload.data && typeof payload.data === "object" && "access_token" in payload.data ? String((payload.data as Record<string, unknown>).access_token) : null) ||
