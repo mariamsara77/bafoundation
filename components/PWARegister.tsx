@@ -10,12 +10,10 @@ type BeforeInstallPromptEvent = Event & {
 export default function PWARegister() {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstall, setShowInstall] = useState(false);
-  const [online, setOnline] = useState(true);
+  const [online, setOnline] = useState(() => typeof navigator === "undefined" ? true : navigator.onLine);
   const [updateReady, setUpdateReady] = useState(false);
 
   useEffect(() => {
-    setOnline(navigator.onLine);
-
     const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
     const onOnline = () => setOnline(true);
     const onOffline = () => setOnline(false);
