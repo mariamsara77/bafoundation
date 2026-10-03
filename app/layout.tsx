@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -13,25 +13,57 @@ const hindSiliguri = Hind_Siliguri({
   display: "swap",
 });
 
+const siteName = "বন্ধু আদর্শ ফাউন্ডেশন";
+const siteDescription = "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।";
+const siteUrl = "https://bafoundation.totthobox.com";
+const socialImage = {
+  url: "/500.png",
+  width: 500,
+  height: 500,
+  alt: siteName,
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bafoundation.totthobox.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "বন্ধু আদর্শ ফাউন্ডেশন",
+    default: siteName,
     template: "%s | বন্ধু আদর্শ ফাউন্ডেশন",
   },
-  description:
-    "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।",
+  description: siteDescription,
+  applicationName: siteName,
+  alternates: {
+    canonical: "/",
+  },
   robots: { index: true, follow: true },
-  applicationName: "বন্ধু আদর্শ ফাউন্ডেশন",
+  openGraph: {
+    type: "website",
+    locale: "bn_BD",
+    url: siteUrl,
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [socialImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: [socialImage],
+  },
   appleWebApp: {
     capable: true,
-    title: "বন্ধু আদর্শ ফাউন্ডেশন",
+    title: siteName,
     statusBarStyle: "default",
   },
   icons: {
     icon: [{ url: "/500.png", sizes: "500x500", type: "image/png" }],
     apple: [{ url: "/500.png", sizes: "500x500", type: "image/png" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FF4500",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
