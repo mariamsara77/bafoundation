@@ -27,7 +27,7 @@ export default function GoogleCallbackPage() {
 
       if (window.opener && !window.opener.closed) {
         window.opener.postMessage(
-          { type: "bafoundation-google-auth", user: result.user },
+          { type: "bafoundation-google-auth", user: result.user, token: result.token },
           window.location.origin,
         );
         setMessage("লগইন সফল হয়েছে। এই উইন্ডোটি বন্ধ হচ্ছে...");
