@@ -8,7 +8,7 @@ const APP_SHELL = [
   "/pwa-screenshot-wide.svg",
 ];
 
-const TRACKING_PATHS = new Set(["/api/tracking/event", "/api/tracking/pwa-status"]);
+const TRACKING_PATHS = new Set(["/api/tracking/event", "/api/tracking/pwa", "/api/tracking/pwa-status", "/api/tracking/sync"]);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
