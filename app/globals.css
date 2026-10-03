@@ -4,6 +4,14 @@
 html { scroll-behavior:smooth; }
 body { background:var(--background); color:var(--foreground); }
 ::selection { background:#FF4500; color:#fff; }
+@theme {
+  --color-orange-400: #FF4500;
+  --color-orange-500: #FF4500;
+  --color-orange-600: #FF4500;
+  --color-orange-700: #FF4500;
+  --color-orange-800: #FF4500;
+}
+
 @layer base {
   button, a, input, textarea, select { outline-offset:3px; }
   :focus-visible { outline:2px solid #FF4500; }
