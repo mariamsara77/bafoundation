@@ -10,26 +10,59 @@ type BeforeInstallPromptEvent = Event & {
 export default function PWARegister() {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstall, setShowInstall] = useState(false);
-  const [online, setOnline] = useState(() => typeof navigator === "undefined" ? true : navigator.onLine);
+  const [offline, setOffline] = useState(false);
   const [updateReady, setUpdateReady] = useState(false);
 
   useEffect(() => {
     const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
-    const onOnline = () => setOnline(true);
-    const onOffline = () => setOnline(false);
+
+    const verifyConnectivity = async () => {
+      if (navigator.onLine) {
+        setOffline(false);
+        return;
+      }
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 2500);
+
+      try {
+        const response = await fetch(window.location.href, {
+          method: "HEAD",
+          cache: "no-store",
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        setOffline(!response.ok);
+      } catch {
+        setOffline(true);
+      } finally {
+        window.clearTimeout(timeout);
+      }
+    };
+
+    const onOnline = () => setOffline(false);
+    const onOffline = () => setOffline(true);
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") void verifyConnectivity();
+    };
+
     const onBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
       const promptEvent = event as BeforeInstallPromptEvent;
       setInstallEvent(promptEvent);
       setShowInstall(isMobile());
     };
+
     const onAppInstalled = () => {
       setInstallEvent(null);
       setShowInstall(false);
     };
 
+    void verifyConnectivity();
     window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOffline);
+    window.addEventListener("focus", verifyConnectivity);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
     window.addEventListener("appinstalled", onAppInstalled);
 
@@ -50,6 +83,8 @@ export default function PWARegister() {
     return () => {
       window.removeEventListener("online", onOnline);
       window.removeEventListener("offline", onOffline);
+      window.removeEventListener("focus", verifyConnectivity);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
       window.removeEventListener("appinstalled", onAppInstalled);
     };
@@ -70,8 +105,8 @@ export default function PWARegister() {
 
   return (
     <>
-      {!online && (
-        <div className="fixed inset-x-0 bottom-0 z-[70] border-t border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-semibold text-amber-900 shadow-lg">
+      {offline && (
+        <div role="status" aria-live="polite" className="fixed inset-x-0 bottom-0 z-[70] border-t border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-semibold text-amber-900 shadow-lg">
           আপনি অফলাইনে আছেন — সংযোগ ফিরে এলে অনলাইন ফিচারগুলো আবার কাজ করবে।
         </div>
       )}
