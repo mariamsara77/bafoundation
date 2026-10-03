@@ -167,6 +167,8 @@ class DonationController extends Controller
             throw new \RuntimeException('Payment amount mismatch.');
         }
 
+        $riskLevel = (int) ($validated['risk_level'] ?? 0);
+
         if (!in_array($validatedStatus, ['VALID', 'VALIDATED'], true)) {
             $donation->update([
                 'status' => 'failed',
@@ -185,7 +187,7 @@ class DonationController extends Controller
             'card_issuer' => $validated['card_issuer'] ?? null,
             'payment_method' => $validated['card_type'] ?? $validated['card_brand'] ?? null,
             'store_amount' => $validated['store_amount'] ?? null,
-            'paid_at' => now(),
+            'paid_at' => $riskLevel > 0 ? null : now(),
             'gateway_payload' => $validated,
         ]);
 
@@ -211,6 +213,7 @@ class DonationController extends Controller
             'status' => $donation->status,
             'donor_name' => $donation->donor_name,
             'payment_method' => $donation->payment_method,
+            'risk_level' => $donation->risk_level,
             'paid_at' => $donation->paid_at,
             'created_at' => $donation->created_at,
         ];
