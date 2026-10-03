@@ -118,7 +118,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
       const onMessage = async (event: MessageEvent) => {
         if (event.origin !== window.location.origin) return;
-        const data = event.data as { type?: string; user?: AuthUser; message?: string } | null;
+        const data = event.data as { type?: string; user?: AuthUser; token?: string; message?: string } | null;
         if (!data || !data.type?.startsWith("bafoundation-google-auth")) return;
 
         if (data.type === "bafoundation-google-auth-error") {
