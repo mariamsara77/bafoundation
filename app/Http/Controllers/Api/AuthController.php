@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DonationCategory;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,12 +20,26 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'donation_category_id' => ['nullable', 'integer', 'exists:donation_categories,id'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ], [
             'email.unique' => 'এই ইমেইল দিয়ে আগে থেকেই একটি অ্যাকাউন্ট আছে। লগইন করুন অথবা Google দিয়ে প্রবেশ করুন।',
             'password.min' => 'পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।',
             'password.confirmed' => 'পাসওয়ার্ড দুটো একই হতে হবে।',
+            'donation_category_id.exists' => 'নির্বাচিত অনুদান বিভাগটি বৈধ নয়।',
         ]);
+
+        if (!empty($data['donation_category_id'])) {
+            $categoryIsActive = DonationCategory::whereKey($data['donation_category_id'])
+                ->where('is_active', true)
+                ->exists();
+
+            if (!$categoryIsActive) {
+                throw ValidationException::withMessages([
+                    'donation_category_id' => ['নির্বাচিত অনুদান বিভাগটি বর্তমানে সক্রিয় নয়।'],
+                ]);
+            }
+        }
 
         $user = User::create([
             'name' => trim($data['name']),
@@ -34,7 +49,7 @@ class AuthController extends Controller
         ]);
 
         $this->ensureMemberRole($user);
-        $this->ensureMemberProfile($user);
+        $this->ensureMemberProfile($user, $data['donation_category_id'] ?? null);
 
         if ($request->hasFile('image')) {
             $this->storeAvatar($user, $request);
@@ -186,11 +201,14 @@ class AuthController extends Controller
         $user->assignRole($memberRole);
     }
 
-    private function ensureMemberProfile(User $user): void
+    private function ensureMemberProfile(User $user, ?int $donationCategoryId = null): void
     {
         $user->profile()->firstOrCreate(
             ['user_id' => $user->id],
-            ['status' => 'active']
+            [
+                'status' => 'active',
+                'donation_category_id' => $donationCategoryId,
+            ]
         );
     }
 
@@ -216,6 +234,7 @@ class AuthController extends Controller
             'permissions' => $user->getAllPermissions()->pluck('name')->values()->all(),
             'is_member' => $isMember,
             'profile_status' => $user->profile?->status,
+            'donation_category_id' => $user->profile?->donation_category_id,
         ];
     }
 }
