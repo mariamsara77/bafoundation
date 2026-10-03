@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "বন্ধু আদর্শ ফাউন্ডেশন",
-    short_name: "বন্ধু আদর্শ",
+    short_name: "বন্ধু আদর্শ ফাউন্ডেশন",
     description: "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।",
     id: "/",
     start_url: "/",
