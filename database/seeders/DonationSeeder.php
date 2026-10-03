@@ -5,14 +5,20 @@ namespace Database\Seeders;
 use App\Models\DonationCategory;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DonationSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (['donation-category-manage', 'donation-manage'] as $permission) {
+        $permissionNames = ['donation-category-manage', 'donation-manage'];
+
+        foreach ($permissionNames as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
+
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->givePermissionTo($permissionNames);
 
         $categories = [
             ['name' => 'শিক্ষা সহায়তা', 'slug' => 'education-support', 'description' => 'শিক্ষা উপকরণ, বৃত্তি ও শিক্ষার্থীদের সহায়তা।', 'sort_order' => 1],
