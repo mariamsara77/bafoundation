@@ -32,7 +32,7 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
         <Link href="/activities" className="text-sm font-semibold text-orange-700">← সব কার্যক্রম</Link>
         <h1 className="mt-6 text-3xl font-bold">{unavailable ? "তথ্য এখন পাওয়া যাচ্ছে না" : "কার্যক্রমটি পাওয়া যায়নি"}</h1>
         <p className="mt-3 leading-7 text-zinc-500">
-          {unavailable ? "Backend service সাময়িকভাবে অনুপলব্ধ। পরে আবার চেষ্টা করুন।" : "এই কার্যক্রমটি আর প্রকাশিত নেই বা পাওয়া যায়নি।"}
+          {unavailable ? "তথ্য সেবাটি সাময়িকভাবে অনুপলব্ধ। পরে আবার চেষ্টা করুন।" : "এই কার্যক্রমটি আর প্রকাশিত নেই বা পাওয়া যায়নি।"}
         </p>
       </div>
     );
