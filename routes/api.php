@@ -28,9 +28,9 @@ Route::get('/members', [MemberController::class, 'index']);
 Route::get('/donation-categories', [DonationController::class, 'categories']);
 
 Route::post('/donations', [DonationController::class, 'store'])->middleware('throttle:10,1');
-Route::post('/donations/payment/success', [DonationController::class, 'success'])->middleware('throttle:30,1');
-Route::post('/donations/payment/fail', [DonationController::class, 'fail'])->middleware('throttle:30,1');
-Route::post('/donations/payment/cancel', [DonationController::class, 'cancel'])->middleware('throttle:30,1');
+Route::match(['get', 'post'], '/donations/payment/success', [DonationController::class, 'success'])->middleware('throttle:30,1');
+Route::match(['get', 'post'], '/donations/payment/fail', [DonationController::class, 'fail'])->middleware('throttle:30,1');
+Route::match(['get', 'post'], '/donations/payment/cancel', [DonationController::class, 'cancel'])->middleware('throttle:30,1');
 Route::post('/donations/payment/ipn', [DonationController::class, 'ipn'])->middleware('throttle:120,1');
 Route::get('/donations/{tranId}', [DonationController::class, 'status'])->middleware('throttle:60,1');
 
