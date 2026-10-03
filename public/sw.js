@@ -1,28 +1,31 @@
-const CACHE_NAME = "futurehope-pwa-v3";
+const CACHE_NAME = "bafoundation-pwa-v4";
+
 const APP_SHELL = [
   "/",
   "/offline",
-  "/android-chrome-192x192.png",
-  "/android-chrome-512x512.png",
-  "/android-chrome-192x192-safe.svg",
-  "/android-chrome-512x512-safe.svg",
-  "/apple-touch-icon.png",
-  "/favicon-32x32.png",
-  "/favicon-16x16.png",
+  "/500.png",
+  "/pwa-screenshot-mobile.svg",
+  "/pwa-screenshot-wide.svg",
 ];
 
 const TRACKING_PATHS = new Set(["/api/tracking/event", "/api/tracking/pwa-status"]);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))
+      Promise.all(
+        keys
+          .filter((key) => key.startsWith("bafoundation-pwa-") && key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      )
     ).then(() => self.clients.claim())
   );
 });
@@ -33,7 +36,7 @@ self.addEventListener("message", (event) => {
 
 async function openQueue() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open("futurehope-pwa", 1);
+    const request = indexedDB.open("bafoundation-pwa", 1);
     request.onupgradeneeded = () => {
       const db = request.result;
       if (!db.objectStoreNames.contains("tracking")) {
@@ -76,7 +79,8 @@ async function flushTracking() {
         body: item.body,
         credentials: "include",
       });
-      if (!response.ok) continue;
+      if (!response.ok) break;
+
       await new Promise((resolve, reject) => {
         const tx = db.transaction("tracking", "readwrite");
         tx.objectStore("tracking").delete(item.id);
@@ -91,7 +95,7 @@ async function flushTracking() {
 }
 
 self.addEventListener("sync", (event) => {
-  if (event.tag === "futurehope-tracking-sync") {
+  if (event.tag === "bafoundation-tracking-sync") {
     event.waitUntil(flushTracking());
   }
 });
@@ -107,7 +111,7 @@ self.addEventListener("fetch", (event) => {
         try {
           await queueTracking(request);
           if ("sync" in self.registration) {
-            await self.registration.sync.register("futurehope-tracking-sync");
+            await self.registration.sync.register("bafoundation-tracking-sync");
           }
         } catch {
           return new Response(JSON.stringify({ queued: false }), {
