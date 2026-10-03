@@ -6,6 +6,7 @@ import {
   deleteAvatar,
   getProfile,
   getDonationCategories,
+  getMyDonations,
   updateProfile,
   type Profile,
   type Donation,
