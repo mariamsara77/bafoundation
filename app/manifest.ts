@@ -17,34 +17,12 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: "ltr",
     categories: ["social", "lifestyle", "education"],
     icons: [
-      {
-        src: "/android-chrome-192x192-safe.svg",
-        sizes: "192x192",
-        type: "image/svg+xml",
-        purpose: "any",
-      },
-      {
-        src: "/android-chrome-512x512-safe.svg",
-        sizes: "512x512",
-        type: "image/svg+xml",
-        purpose: "maskable",
-      },
+      { src: "/500.png", sizes: "500x500", type: "image/png", purpose: "any" },
+      { src: "/500.png", sizes: "500x500", type: "image/png", purpose: "maskable" },
     ],
     screenshots: [
-      {
-        src: "/pwa-screenshot-mobile.svg",
-        sizes: "540x960",
-        type: "image/svg+xml",
-        form_factor: "narrow",
-        label: "বন্ধু আদর্শ ফাউন্ডেশন — মোবাইল",
-      },
-      {
-        src: "/pwa-screenshot-wide.svg",
-        sizes: "1280x720",
-        type: "image/svg+xml",
-        form_factor: "wide",
-        label: "বন্ধু আদর্শ ফাউন্ডেশন — ওয়েব",
-      },
+      { src: "/pwa-screenshot-mobile.svg", sizes: "540x960", type: "image/svg+xml", form_factor: "narrow", label: "বন্ধু আদর্শ ফাউন্ডেশন — মোবাইল" },
+      { src: "/pwa-screenshot-wide.svg", sizes: "1280x720", type: "image/svg+xml", form_factor: "wide", label: "বন্ধু আদর্শ ফাউন্ডেশন — ওয়েব" },
     ],
     share_target: {
       action: "/share",
@@ -53,24 +31,9 @@ export default function manifest(): MetadataRoute.Manifest {
       params: { title: "title", text: "text", url: "url" },
     },
     shortcuts: [
-      {
-        name: "কাজগুলো দেখুন",
-        short_name: "কাজ",
-        url: "/works",
-        icons: [{ src: "/android-chrome-192x192-safe.svg", sizes: "192x192", type: "image/svg+xml" }],
-      },
-      {
-        name: "কার্যক্রম দেখুন",
-        short_name: "কার্যক্রম",
-        url: "/activities",
-        icons: [{ src: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" }],
-      },
-      {
-        name: "সদস্য দেখুন",
-        short_name: "সদস্য",
-        url: "/members",
-        icons: [{ src: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" }],
-      },
+      { name: "কাজগুলো দেখুন", short_name: "কাজ", url: "/works", icons: [{ src: "/500.png", sizes: "500x500", type: "image/png" }] },
+      { name: "কার্যক্রম দেখুন", short_name: "কার্যক্রম", url: "/activities", icons: [{ src: "/500.png", sizes: "500x500", type: "image/png" }] },
+      { name: "সদস্য দেখুন", short_name: "সদস্য", url: "/members", icons: [{ src: "/500.png", sizes: "500x500", type: "image/png" }] },
     ],
   };
 }

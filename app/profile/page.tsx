@@ -5,8 +5,12 @@ import {
   ApiError,
   deleteAvatar,
   getProfile,
+  getDonationCategories,
+  getMyDonations,
   updateProfile,
   type Profile,
+  type Donation,
+  type DonationCategory,
 } from "@/lib/api";
 import { useAuth } from "@/components/AuthProvider";
 
@@ -20,6 +24,7 @@ const initial = {
   education: "",
   blood_group: "",
   bio: "",
+  donation_category_id: "",
 };
 
 export default function ProfilePage() {
@@ -32,9 +37,13 @@ export default function ProfilePage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [donationCategories, setDonationCategories] = useState<import("@/lib/api").DonationCategory[]>([]);
+  const [donations, setDonations] = useState<import("@/lib/api").Donation[]>([]);
 
   useEffect(() => {
     if (!user) return;
+    getDonationCategories().then(setDonationCategories).catch(() => setDonationCategories([]));
+    getMyDonations().then(setDonations).catch(() => setDonations([]));
     getProfile()
       .then((p) => {
         setProfile(p);
@@ -48,6 +57,7 @@ export default function ProfilePage() {
           education: p.education || "",
           blood_group: p.blood_group || "",
           bio: p.bio || "",
+          donation_category_id: p.donation_category_id ? String(p.donation_category_id) : "",
         });
         setPreview(p.avatar_url || user.avatar || "");
       })
@@ -212,6 +222,19 @@ export default function ProfilePage() {
               onChange={setForm}
             />
             <label className="block">
+              <span className="mb-2 block text-sm font-semibold">অনুদানের পছন্দের বিভাগ</span>
+              <select
+                value={form.donation_category_id}
+                onChange={(e) => setForm((f) => ({ ...f, donation_category_id: e.target.value }))}
+                className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none focus:border-orange-500 focus:bg-white"
+              >
+                <option value="">নির্বাচন করুন</option>
+                {donationCategories.map((category) => (
+                  <option key={category.id} value={category.id}>{category.name}</option>
+                ))}
+              </select>
+            </label>
+            <label className="block">
               <span className="mb-2 block text-sm font-semibold">
                 রক্তের গ্রুপ
               </span>
@@ -337,4 +360,16 @@ function Textarea({
       />
     </label>
   );
+}
+
+function donationStatusLabel(status: string) {
+  const labels: Record<string, string> = {
+    completed: "সম্পন্ন",
+    processing: "প্রক্রিয়াধীন",
+    pending: "অপেক্ষমাণ",
+    review: "পর্যালোচনায়",
+    failed: "ব্যর্থ",
+    cancelled: "বাতিল",
+  };
+  return labels[status] || status;
 }

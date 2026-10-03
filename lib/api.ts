@@ -1,6 +1,6 @@
 export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://bafoundation.totthobox.com").replace(/\/$/, "");
 
-const TOKEN_KEY = "futurehope_access_token";
+const TOKEN_KEY = "bafoundation_access_token";
 
 type ApiResponse<T = unknown> = {
   data?: T;
@@ -41,6 +41,8 @@ export type Profile = {
   priority?: number;
   designation?: string | null;
   designation_id?: number | string | null;
+  donation_category_id?: number | string | null;
+  donation_category?: string | null;
   created_at?: string;
   updated_at?: string;
 };
@@ -85,6 +87,26 @@ export type Member = {
   blood_group?: string | null;
 };
 
+export type DonationCategory = {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string | null;
+};
+
+export type Donation = {
+  id: number | string;
+  tran_id: string;
+  category?: { id?: number; name?: string | null };
+  amount: string;
+  currency: string;
+  status: string;
+  donor_name: string;
+  payment_method?: string | null;
+  paid_at?: string | null;
+  created_at?: string | null;
+};
+
 export type WorkCategory = {
   id: number;
   name: string;
@@ -122,7 +144,7 @@ export function clearStoredToken() {
   if (typeof window !== "undefined") window.localStorage.removeItem(TOKEN_KEY);
 }
 
-function storeToken(token: string) {
+export function storeToken(token: string) {
   if (typeof window !== "undefined") window.localStorage.setItem(TOKEN_KEY, token);
 }
 
@@ -299,6 +321,35 @@ export async function deleteAvatar() {
   return payload.profile as Profile;
 }
 
+export async function getDonationCategories() {
+  try {
+    const payload = await request<{ categories: DonationCategory[] }>("/donation-categories");
+    return payload.categories;
+  } catch (error) {
+    if (error instanceof ApiError) return [];
+    throw error;
+  }
+}
+
+export async function startDonation(data: {
+  donation_category_id: number;
+  amount: number;
+  donor_name: string;
+  donor_email?: string;
+  donor_phone: string;
+  message?: string;
+}) {
+  return request<{ message: string; donation: Donation; checkout_url: string }>("/donations", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }, Boolean(getStoredToken()));
+}
+
+export async function getMyDonations() {
+  const payload = await request<{ donations: { data: Donation[] } }>("/donations", { method: "GET" }, true);
+  return payload.donations?.data || [];
+}
+
 export async function getCategories() {
   try {
     const payload = await request<{ categories: Category[] }>("/categories");
@@ -393,4 +444,12 @@ export async function register(name: string, email: string, password: string, pa
   if (token) storeToken(token);
   const user = (payload.user || (payload.data && typeof payload.data === "object" && "user" in payload.data ? (payload.data as Record<string, unknown>).user : null)) as AuthUser | null;
   return { token, user };
+}
+
+export async function getDonationPaymentStatus(tranId: string) {
+  const payload = await request<{ donation: Donation }>(
+    `/donations/payment/status/${encodeURIComponent(tranId)}`,
+    { method: "GET" },
+  );
+  return payload.donation;
 }

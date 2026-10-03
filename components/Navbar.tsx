@@ -13,6 +13,7 @@ const links = [
   { href:"/how-it-works", label:"কীভাবে কাজ করে" },
   { href:"/members", label:"সদস্যবৃন্দ" },
   { href:"/contact", label:"যোগাযোগ" },
+  { href:"/donate", label:"দান করুন" },
 ];
 
 export default function Navbar() {
