@@ -153,7 +153,7 @@ export default function AuthDialog({ open, onClose }: { open: boolean; onClose: 
           {mode === "register" && (
             <label className="block">
               <span className="mb-1.5 block text-sm font-semibold text-zinc-700">আপনি কোন ধরনের অনুদানে যুক্ত হতে চান?</span>
-              <select value={donationCategoryId} onChange={(e) => setDonationCategoryId(e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10">
+              <select required value={donationCategoryId} onChange={(e) => setDonationCategoryId(e.target.value)} className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10">
                 <option value="">বিভাগ নির্বাচন করুন</option>
                 {donationCategories.map((category) => (
                   <option key={category.id} value={category.id}>{category.name}</option>
