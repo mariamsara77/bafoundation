@@ -2,14 +2,14 @@
 <rect width="1280" height="720" fill="#fafafa"/>
 <rect width="1280" height="82" fill="#fff" stroke="#e4e4e7"/>
 <rect x="52" y="18" width="46" height="46" rx="13" fill="#fff1eb"/><circle cx="75" cy="41" r="14" fill="#FF4500"/>
-<text x="114" y="39" font-family="Noto Sans Bengali,sans-serif" font-size="19" font-weight="700" fill="#18181b">বন্ধু আদর্শ ফাউন্ডেশন</text>
+<text x="114" y="39" font-family="Noto Sans Bengali,sans-serif" font-size="19" font-weight="700" fill="#FF4500">বন্ধু আদর্শ ফাউন্ডেশন</text>
 <text x="500" y="50" font-family="Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" fill="#52525b">হোম</text>
 <text x="555" y="50" font-family="Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" fill="#52525b">আমাদের সম্পর্কে</text>
 <text x="690" y="50" font-family="Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" fill="#FF4500">কার্যক্রম</text>
 <text x="770" y="50" font-family="Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" fill="#52525b">কাজের প্রস্তাব</text>
 <rect x="1010" y="22" width="170" height="40" rx="12" fill="#fff1eb"/><text x="1042" y="48" font-family="Noto Sans Bengali,sans-serif" font-size="14" font-weight="700" fill="#FF4500">অ্যাকাউন্ট</text>
 <rect x="0" y="82" width="1280" height="330" fill="#18181b"/>
-<rect x="0" y="82" width="1280" height="330" fill="#7f2200" opacity=".58"/>
+<rect x="0" y="82" width="1280" height="330" fill="#FF4500" opacity=".20"/>
 <text x="72" y="145" font-family="Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" fill="#ffe0d2">মানুষ • মানবতা • ভবিষ্যৎ</text>
 <text x="72" y="215" font-family="Noto Sans Bengali,sans-serif" font-size="52" font-weight="700" fill="#fff">একতাবদ্ধ উদ্যোগে</text>
 <text x="72" y="275" font-family="Noto Sans Bengali,sans-serif" font-size="52" font-weight="700" fill="#ff8a66">সুন্দর ভবিষ্যৎ</text>
@@ -24,5 +24,5 @@
 <rect x="72" y="515" width="355" height="105" rx="22" fill="#fff" stroke="#e4e4e7"/><rect x="447" y="515" width="355" height="105" rx="22" fill="#fff" stroke="#e4e4e7"/><rect x="822" y="515" width="355" height="105" rx="22" fill="#fff" stroke="#e4e4e7"/>
 <text x="98" y="553" font-family="Noto Sans Bengali,sans-serif" font-size="17" font-weight="700" fill="#18181b">প্রকাশিত কাজ ও উদ্যোগ</text><text x="473" y="553" font-family="Noto Sans Bengali,sans-serif" font-size="17" font-weight="700" fill="#18181b">মানবিক সহায়তা</text><text x="848" y="553" font-family="Noto Sans Bengali,sans-serif" font-size="17" font-weight="700" fill="#18181b">সামাজিক কল্যাণ</text>
 <text x="98" y="580" font-family="Noto Sans Bengali,sans-serif" font-size="13" fill="#71717a">স্বয়ংক্রিয়ভাবে প্রকাশিত উদ্যোগ।</text><text x="473" y="580" font-family="Noto Sans Bengali,sans-serif" font-size="13" fill="#71717a">মানুষের পাশে থাকার উদ্যোগ।</text><text x="848" y="580" font-family="Noto Sans Bengali,sans-serif" font-size="13" fill="#71717a">সমাজের জন্য সম্মিলিত কাজ।</text>
-<rect y="660" width="1280" height="60" fill="#7f2200"/><text x="72" y="697" font-family="Noto Sans Bengali,sans-serif" font-size="17" font-weight="700" fill="#fff">বন্ধু আদর্শ ফাউন্ডেশন — মানুষের পাশে থেকে সুন্দর ভবিষ্যতের পথে</text>
+<rect y="660" width="1280" height="60" fill="#18181b"/><text x="72" y="697" font-family="Noto Sans Bengali,sans-serif" font-size="17" font-weight="700" fill="#fff">বন্ধু আদর্শ ফাউন্ডেশন — মানুষের পাশে থেকে সুন্দর ভবিষ্যতের পথে</text>
 </svg>
