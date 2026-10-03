@@ -46,7 +46,7 @@ new class extends Component {
             'categories' => DonationCategory::orderBy('sort_order')->orderBy('name')->get(['id', 'name']),
             'totalCompleted' => Donation::where('status', 'completed')->sum('amount'),
             'completedCount' => Donation::where('status', 'completed')->count(),
-            'pendingCount' => Donation::whereIn('status', ['pending', 'processing'])->count(),
+            'pendingCount' => Donation::whereIn('status', ['pending', 'processing', 'review'])->count(),
         ];
     }
 }; ?>
