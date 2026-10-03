@@ -3,9 +3,9 @@
 <rect x="20" y="20" width="500" height="78" rx="22" fill="#fff" stroke="#e4e4e7"/>
 <rect x="36" y="37" width="44" height="44" rx="12" fill="#fff1eb"/>
 <circle cx="58" cy="59" r="13" fill="#FF4500"/>
-<text x="94" y="55" font-family="Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" fill="#18181b">বন্ধু আদর্শ ফাউন্ডেশন</text>
+<text x="94" y="55" font-family="Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" fill="#FF4500">বন্ধু আদর্শ ফাউন্ডেশন</text>
 <rect x="20" y="118" width="500" height="300" rx="28" fill="#18181b"/>
-<rect x="20" y="118" width="500" height="300" rx="28" fill="#7f2200" opacity=".62"/>
+<rect x="20" y="118" width="500" height="300" rx="28" fill="#FF4500" opacity=".20"/>
 <text x="48" y="166" font-family="Noto Sans Bengali,sans-serif" font-size="14" font-weight="600" fill="#ffe0d2">মানুষ • মানবতা • ভবিষ্যৎ</text>
 <text x="48" y="218" font-family="Noto Sans Bengali,sans-serif" font-size="31" font-weight="700" fill="#fff">একতাবদ্ধ উদ্যোগে</text>
 <text x="48" y="260" font-family="Noto Sans Bengali,sans-serif" font-size="31" font-weight="700" fill="#ff8a66">সুন্দর ভবিষ্যৎ</text>
