@@ -85,6 +85,26 @@ export type Member = {
   blood_group?: string | null;
 };
 
+export type DonationCategory = {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string | null;
+};
+
+export type Donation = {
+  id: number | string;
+  tran_id: string;
+  category?: { id?: number; name?: string | null };
+  amount: string;
+  currency: string;
+  status: string;
+  donor_name: string;
+  payment_method?: string | null;
+  paid_at?: string | null;
+  created_at?: string | null;
+};
+
 export type WorkCategory = {
   id: number;
   name: string;
@@ -299,6 +319,35 @@ export async function deleteAvatar() {
   return payload.profile as Profile;
 }
 
+export async function getDonationCategories() {
+  try {
+    const payload = await request<{ categories: DonationCategory[] }>("/donation-categories");
+    return payload.categories;
+  } catch (error) {
+    if (error instanceof ApiError) return [];
+    throw error;
+  }
+}
+
+export async function startDonation(data: {
+  donation_category_id: number;
+  amount: number;
+  donor_name: string;
+  donor_email?: string;
+  donor_phone: string;
+  message?: string;
+}) {
+  return request<{ message: string; donation: Donation; checkout_url: string }>("/donations", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }, Boolean(getStoredToken()));
+}
+
+export async function getMyDonations() {
+  const payload = await request<{ donations: { data: Donation[] } }>("/donations", { method: "GET" }, true);
+  return payload.donations?.data || [];
+}
+
 export async function getCategories() {
   try {
     const payload = await request<{ categories: Category[] }>("/categories");
@@ -382,10 +431,10 @@ export async function resetPassword(token: string, email: string, password: stri
   });
 }
 
-export async function register(name: string, email: string, password: string, passwordConfirmation: string) {
+export async function register(name: string, email: string, password: string, passwordConfirmation: string, donationCategoryId?: number | null) {
   const payload = await request<ApiResponse>("/auth/register", {
     method: "POST",
-    body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation }),
+    body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation, donation_category_id: donationCategoryId || null }),
   });
   const token = payload.access_token || payload.token ||
     (payload.data && typeof payload.data === "object" && "access_token" in payload.data ? String((payload.data as Record<string, unknown>).access_token) : null) ||
