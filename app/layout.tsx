@@ -14,7 +14,7 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bondhu-adorsho.totthobox.com"),
+  metadataBase: new URL("https://bafoundation.totthobox.com"),
   title: {
     default: "বন্ধু আদর্শ ফাউন্ডেশন",
     template: "%s | বন্ধু আদর্শ ফাউন্ডেশন",
