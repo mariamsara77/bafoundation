@@ -17,7 +17,7 @@ const siteName = "বন্ধু আদর্শ ফাউন্ডেশন";
 const siteDescription = "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।";
 const siteUrl = "https://bafoundation.totthobox.com";
 const socialImage = {
-  url: "/500.png",
+  url: "/500.png?v=20261004",
   width: 500,
   height: 500,
   alt: siteName,
