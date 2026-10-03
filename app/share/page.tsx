@@ -17,7 +17,7 @@ function ShareContent() {
   return (
     <main className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-5 py-12">
       <section className="w-full max-w-2xl rounded-3xl border border-zinc-200 bg-white p-7 shadow-sm sm:p-10">
-        <p className="text-sm font-semibold text-orange-600">বন্ধু আদর্শ</p>
+        <p className="text-sm font-semibold text-orange-600">বন্ধু আদর্শ ফাউন্ডেশন</p>
         <h1 className="mt-2 text-2xl font-bold text-zinc-950">শেয়ার করা কনটেন্ট</h1>
         <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
           <h2 className="font-bold text-zinc-900">{title}</h2>
