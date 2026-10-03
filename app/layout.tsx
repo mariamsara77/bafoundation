@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://bondhu-adorsho.totthobox.com"),
   title: {
     default: "বন্ধু আদর্শ ফাউন্ডেশন",
-    template: "%s | বন্ধু আদর্শ",
+    template: "%s | বন্ধু আদর্শ ফাউন্ডেশন",
   },
   description:
     "মানুষের পাশে থেকে একটি সুন্দর, মানবিক ও সম্ভাবনাময় ভবিষ্যৎ গড়ার উদ্যোগ।",
   robots: { index: true, follow: true },
-  applicationName: "বন্ধু আদর্শ",
+  applicationName: "বন্ধু আদর্শ ফাউন্ডেশন",
   appleWebApp: {
     capable: true,
-    title: "বন্ধু আদর্শ",
+    title: "বন্ধু আদর্শ ফাউন্ডেশন",
     statusBarStyle: "default",
   },
   icons: {
