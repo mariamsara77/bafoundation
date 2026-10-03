@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('amount', 12, 2);
             $table->string('currency', 3)->default('BDT');
             $table->string('status', 30)->default('pending')->index();
+            $table->unsignedTinyInteger('risk_level')->nullable();
 
             $table->string('donor_name', 120);
             $table->string('donor_email', 255)->nullable();
