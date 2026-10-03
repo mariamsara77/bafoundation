@@ -109,7 +109,7 @@ class DonationController extends Controller
     public function fail(Request $request): RedirectResponse
     {
         $donation = Donation::where('tran_id', $request->string('tran_id')->toString())->first();
-        if ($donation) {
+        if ($donation && !in_array($donation->status, ['completed', 'review'], true)) {
             $donation->update(['status' => 'failed', 'failed_at' => now(), 'gateway_payload' => $request->all()]);
         }
         return redirect()->away($this->frontendUrl('/donate/failed'));
@@ -118,7 +118,7 @@ class DonationController extends Controller
     public function cancel(Request $request): RedirectResponse
     {
         $donation = Donation::where('tran_id', $request->string('tran_id')->toString())->first();
-        if ($donation) {
+        if ($donation && !in_array($donation->status, ['completed', 'review'], true)) {
             $donation->update(['status' => 'cancelled', 'cancelled_at' => now(), 'gateway_payload' => $request->all()]);
         }
         return redirect()->away($this->frontendUrl('/donate/cancelled'));
@@ -158,6 +158,7 @@ class DonationController extends Controller
         $validatedTranId = (string) ($validated['tran_id'] ?? '');
         $validatedStatus = strtoupper((string) ($validated['status'] ?? ''));
         $validatedAmount = (float) ($validated['amount'] ?? 0);
+        $validatedCurrency = strtoupper((string) ($validated['currency'] ?? ''));
 
         if ($validatedTranId !== $donation->tran_id) {
             throw new \RuntimeException('Transaction ID mismatch.');
@@ -165,6 +166,10 @@ class DonationController extends Controller
 
         if (abs($validatedAmount - (float) $donation->amount) > 0.009) {
             throw new \RuntimeException('Payment amount mismatch.');
+        }
+
+        if ($validatedCurrency !== strtoupper($donation->currency)) {
+            throw new \RuntimeException('Payment currency mismatch.');
         }
 
         $riskLevel = (int) ($validated['risk_level'] ?? 0);
@@ -179,8 +184,9 @@ class DonationController extends Controller
         }
 
         $donation->update([
-            'status' => 'completed',
+            'status' => $riskLevel > 0 ? 'review' : 'completed',
             'validation_id' => $valId,
+            'risk_level' => $riskLevel,
             'bank_tran_id' => $validated['bank_tran_id'] ?? null,
             'card_type' => $validated['card_type'] ?? null,
             'card_brand' => $validated['card_brand'] ?? null,
