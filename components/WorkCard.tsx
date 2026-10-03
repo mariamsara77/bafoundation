@@ -17,7 +17,7 @@ export default function WorkCard({ work }: { work: Work }) {
         <img src={work.cover_url} alt={work.title} className="h-52 w-full object-cover" />
       ) : (
         <div className="flex h-52 items-center justify-center bg-orange-50 text-sm font-semibold text-orange-700">
-          {work.category || "বন্ধু আদর্শ"}
+          {work.category || "বন্ধু আদর্শ ফাউন্ডেশন"}
         </div>
       )}
       <div className="p-6">
@@ -28,7 +28,7 @@ export default function WorkCard({ work }: { work: Work }) {
         <h2 className="mt-4 line-clamp-2 text-xl font-bold text-zinc-950">{work.title}</h2>
         <p className="mt-3 line-clamp-3 whitespace-pre-line text-sm leading-7 text-zinc-500">{work.description}</p>
         <div className="mt-5 flex items-center justify-between gap-4 text-xs text-zinc-500">
-          <span>{work.user?.name || work.submitted_name || "বন্ধু আদর্শ"}</span>
+          <span>{work.user?.name || work.submitted_name || "বন্ধু আদর্শ ফাউন্ডেশন"}</span>
           <span>{work.votes_count}/{work.required_votes} ভোট</span>
         </div>
         <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-100">
