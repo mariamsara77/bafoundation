@@ -445,3 +445,11 @@ export async function register(name: string, email: string, password: string, pa
   const user = (payload.user || (payload.data && typeof payload.data === "object" && "user" in payload.data ? (payload.data as Record<string, unknown>).user : null)) as AuthUser | null;
   return { token, user };
 }
+
+export async function getDonationPaymentStatus(tranId: string) {
+  const payload = await request<{ donation: Donation }>(
+    `/donations/payment/status/${encodeURIComponent(tranId)}`,
+    { method: "GET" },
+  );
+  return payload.donation;
+}
